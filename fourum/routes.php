@@ -11,5 +11,6 @@
 |
 */
 
-Route::get('/', 'Fourum\\Controllers\\HomeController@showWelcome');
-Route::get('/install', 'Fourum\\Controllers\\InstallController@index');
+Route::get('/', 'Fourum\Controllers\HomeController@showWelcome');
+Route::get('/install', 'Fourum\Controllers\InstallController@index');
+Route::get('/auth', 'Fourum\Controllers\AuthController@index');
