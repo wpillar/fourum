@@ -1,21 +1,21 @@
 <?php namespace Fourum\Storage\User;
 
-use User;
+use Fourum\Models\User;
 
 class EloquentUserRepository implements UserRepositoryInterface
 {
     public function all()
     {
-        return Post::all();
+        return User::all();
     }
 
     public function get($id)
     {
-        return Post::find($id);
+        return User::find($id);
     }
 
     public function create($input)
     {
-        return Post::create($input);
+        return User::create($input);
     }
 }
