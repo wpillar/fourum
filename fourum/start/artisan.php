@@ -10,5 +10,5 @@
 | the console gets access to each of the command object instances.
 |
 */
-Artisan::add(new InstallCommand);
+Artisan::add(new Fourum\Commands\InstallCommand);
 
