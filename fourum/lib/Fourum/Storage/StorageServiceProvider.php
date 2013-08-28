@@ -7,8 +7,8 @@ class StorageServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
-            'Fourum\Lib\Storage\User\UserRepositoryInterface',
-            'Fourum\Lib\Storage\User\EloquentUserRepository'
+            'Fourum\Storage\User\UserRepositoryInterface',
+            'Fourum\Storage\User\EloquentUserRepository'
         );
     }
 }
