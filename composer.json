@@ -17,7 +17,10 @@
 			"fourum/database/migrations",
 			"fourum/database/seeds",
 			"fourum/tests/TestCase.php"
-		]
+		],
+		"psr-0": {
+			"Fourum": "fourum/lib/"
+		}
 	},
 	"scripts": {
 		"post-install-cmd": [
