@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\View;
 
+/**
+ * Laravel's Base Controller
+ */
 class BaseController extends \Controller {
 
 	/**
