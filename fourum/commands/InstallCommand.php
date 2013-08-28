@@ -4,6 +4,11 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
+/**
+ * Install Command
+ *
+ * Command for running install tasks.
+ */
 class InstallCommand extends Command {
 
 	/**
@@ -45,6 +50,11 @@ class InstallCommand extends Command {
 		$this->info('Done!');
 	}
 
+	/**
+	 * Setup database tables
+	 *
+	 * @return void
+	 */
 	private function setupDatabase()
 	{
 		$this->info('Dropping existing tables...');
@@ -64,6 +74,11 @@ class InstallCommand extends Command {
 		$this->info('Tables created.');
 	}
 
+	/**
+	 * Load closures for creating tables.
+	 *
+	 * @return array
+	 */
 	private function loadTableClosures()
 	{
 		return array(
@@ -158,6 +173,11 @@ class InstallCommand extends Command {
 		);
 	}
 
+	/**
+	 * Drops existing tables from the schema.
+	 *
+	 * @return void
+	 */
 	private function dropExistingTables()
 	{
 		$tableNames = array_keys($this->loadTableClosures());
