@@ -1,9 +1,11 @@
 <?php namespace Fourum\Models;
 
+use Fourum\Storage\Group\GroupInterface;
+
 /**
  * Eloquent Group Model
  */
-class Group extends Eloquent
+class Group extends Eloquent implements GroupInterface
 {
     protected $table = 'groups';
 

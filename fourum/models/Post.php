@@ -1,6 +1,11 @@
 <?php namespace Fourum\Models;
 
-class Post extends Eloquent
+use Fourum\Storage\Post\PostInterface;
+
+/**
+ * Eloquent Post Model
+ */
+class Post extends Eloquent implements PostInterface
 {
     protected $table = 'posts';
 
