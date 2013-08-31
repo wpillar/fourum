@@ -3,7 +3,7 @@
 use Fourum\Storage\Forum\ForumInterface;
 
 /**
- * Forum
+ * Eloquent Forum Model
  */
 class Forum extends Eloquent implements ForumInterface
 {
@@ -12,7 +12,7 @@ class Forum extends Eloquent implements ForumInterface
     /**
      * Get the Type of the Forum
      *
-     * @return Fourum\Models\Forum\Type
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function type()
     {
