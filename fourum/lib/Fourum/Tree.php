@@ -1,4 +1,4 @@
-<?php namespace Fourum\Models;
+<?php namespace Fourum;
 
 use Baum\Node;
 
@@ -36,14 +36,14 @@ class Tree extends Node {
   *
   * @var int
   */
-  protected $leftColumn = 'lft';
+  protected $leftColumn = 'left';
 
   /**
   * Column name for the right index.
   *
   * @var int
   */
-  protected $rightColumn = 'rgt';
+  protected $rightColumn = 'right';
 
   /**
   * Column name for the depth field.
@@ -58,7 +58,7 @@ class Tree extends Node {
   *
   * @var array
   */
-  protected $guarded = array('id', 'parent_id', 'lft', 'rgt', 'depth');
+  protected $guarded = array('id', 'parent_id', 'left', 'right', 'depth');
 
   //////////////////////////////////////////////////////////////////////////////
 
