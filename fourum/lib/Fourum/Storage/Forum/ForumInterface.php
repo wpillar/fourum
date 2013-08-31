@@ -1,4 +1,4 @@
-<?php
+<?php namespace Fourum\Storage\Forum;
 
 /**
  * Interface for interacting with a Forum
