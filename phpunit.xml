@@ -12,7 +12,15 @@
 >
     <testsuites>
         <testsuite name="unit">
-            <directory>./fourum/tests/</directory>
+            <directory suffix=".php">./fourum/tests/</directory>
         </testsuite>
     </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./fourum/lib/*</directory>
+            <directory suffix=".php">./fourum/models/*</directory>
+        </whitelist>
+    </filter>
+
 </phpunit>
