@@ -16,10 +16,8 @@ class FileViewFinder extends IlluminateFileViewFinder
      *
      * @param string $path
      */
-    public function setPath($path)
+    public function setPaths(array $paths)
     {
-        $this->paths = array(
-            $path
-        );
+        $this->paths = $paths;
     }
 }

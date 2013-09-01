@@ -94,8 +94,11 @@ class Theme
      */
     private function setup()
     {
-        $path = public_path("themes/{$this->getApplication()}/{$this->getTheme()}/views");
+        $paths = array(
+            public_path("themes/{$this->getApplication()}/{$this->getTheme()}/views"),
+            public_path("themes/{$this->getApplication()}/default/views")
+        );
 
-        $this->finder->setPath($path);
+        $this->finder->setPaths($paths);
     }
 }
