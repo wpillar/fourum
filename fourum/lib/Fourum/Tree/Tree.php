@@ -1,4 +1,4 @@
-<?php namespace Fourum;
+<?php namespace Fourum\Tree;
 
 use Baum\Node;
 
