@@ -111,10 +111,12 @@ return array(
 		'Illuminate\Foundation\Providers\TinkerServiceProvider',
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
-		'Illuminate\View\ViewServiceProvider',
+		// 'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Baum\BaumServiceProvider',
-		'Fourum\Storage\StorageServiceProvider'
+		'Fourum\Storage\StorageServiceProvider',
+		'Fourum\Theme\ThemeServiceProvider',
+		'Fourum\View\ViewServiceProvider'
 	),
 
 	/*
@@ -179,6 +181,7 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
+		'Theme'			  => 'Fourum\Facades\Theme'
 
 	),
 
