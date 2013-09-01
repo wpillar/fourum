@@ -1,8 +1,10 @@
-<?php namespace Fourum\Controllers;
+<?php namespace Fourum\Controllers\Front;
 
 use Illuminate\Support\Facades\View;
+use Fourum\Controllers\FrontController;
 
-class HomeController extends BaseController {
+class HomeController extends FrontController
+{
 
 	/*
 	|--------------------------------------------------------------------------

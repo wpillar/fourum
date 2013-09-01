@@ -1,13 +1,14 @@
-<?php namespace Fourum\Controllers;
+<?php namespace Fourum\Controllers\Front;
 
 use Fourum\Storage\User\UserRepositoryInterface;
+use Fourum\Controllers\FrontController;
 
 /**
  * Auth Controller
  *
  * Handles actions relating to authenticating a user.
  */
-class AuthController extends BaseController
+class AuthController extends FrontController
 {
     /**
      * User Repository
@@ -33,5 +34,10 @@ class AuthController extends BaseController
     public function index()
     {
         var_dump($this->users->all());
+    }
+
+    public function login()
+    {
+        echo 'front login';
     }
 }

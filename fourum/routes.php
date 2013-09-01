@@ -11,6 +11,17 @@
 |
 */
 
-Route::get('/', 'Fourum\Controllers\HomeController@showWelcome');
-Route::get('/install', 'Fourum\Controllers\InstallController@index');
-Route::get('/auth', 'Fourum\Controllers\AuthController@index');
+/**
+ * Front Routes
+ */
+Route::get('/', 'Fourum\Controllers\Front\HomeController@showWelcome');
+Route::get('/install', 'Fourum\Controllers\Front\InstallController@index');
+Route::get('/login', 'Fourum\Controllers\Front\AuthController@login');
+
+/**
+ * Admin Routes
+ */
+Route::group(array('prefix' => 'admin'), function()
+{
+    Route::get('/', 'Fourum\Controllers\Admin\IndexController@index');
+});

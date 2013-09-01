@@ -1,13 +1,14 @@
-<?php namespace Fourum\Controllers;
+<?php namespace Fourum\Controllers\Front;
 
 use Illuminate\Support\Facades\View;
+use Fourum\Controllers\FrontController;
 
 /**
  * Install Controller
  *
  * Handles the installation of Fourum.
  */
-class InstallController extends BaseController
+class InstallController extends FrontController
 {
     /**
      * Index
