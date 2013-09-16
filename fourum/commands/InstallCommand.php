@@ -170,6 +170,18 @@ class InstallCommand extends Command {
 				$table->text('content');
 				$table->timestamps();
 				$table->softDeletes();
+			},
+			'messages' => function($table) {
+				$table->engine = "InnoDb";
+
+				$table->increments('id')->unsigned();
+				$table->integer('from_user_id')->unsigned()->index();
+				$table->integer('user_id')->unsigned()->index();
+				$table->string('subject');
+				$table->text('content');
+				$table->tinyInteger('read');
+				$table->timestamps();
+				$table->softDeletes();
 			}
 		);
 	}
