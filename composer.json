@@ -4,7 +4,8 @@
 	"keywords": ["framework", "laravel"],
 	"require": {
 		"laravel/framework": "4.0.*",
-		"baum/baum": "~1.0"
+		"baum/baum": "~1.0",
+		"vtalbot/less": "1.*"
 	},
 	"require-dev": {
         "phpunit/phpunit": "3.7.*",

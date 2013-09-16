@@ -116,7 +116,8 @@ return array(
 		'Baum\BaumServiceProvider',
 		'Fourum\Storage\StorageServiceProvider',
 		'Fourum\Theme\ThemeServiceProvider',
-		'Fourum\View\ViewServiceProvider'
+		'Fourum\View\ViewServiceProvider',
+		'VTalbot\Less\LessServiceProvider'
 	),
 
 	/*
@@ -181,7 +182,8 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-		'Theme'			  => 'Fourum\Facades\Theme'
+		'Theme'			  => 'Fourum\Facades\Theme',
+		'Less'			  => 'VTalbot\Less\Facades\Less'
 
 	),
 
