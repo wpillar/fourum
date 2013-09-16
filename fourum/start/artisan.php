@@ -11,3 +11,4 @@
 |
 */
 Artisan::add(new Fourum\Commands\InstallCommand);
+Artisan::add(new Fourum\Commands\ThemeCompileCommand);
