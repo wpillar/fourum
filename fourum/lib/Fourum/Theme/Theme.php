@@ -33,6 +33,13 @@ class Theme
     protected $theme;
 
     /**
+     * The current colour scheme for the current theme
+     *
+     * @var string
+     */
+    protected $colourScheme;
+
+    /**
      * Set me up with a Fourum\View\FileViewFinder instance.
      *
      * @param FileViewFinder $finder
@@ -67,6 +74,16 @@ class Theme
     }
 
     /**
+     * Sets the colour scheme for the current theme.
+     *
+     * @param string $name
+     */
+    public function setColourScheme($name)
+    {
+        $this->colourScheme = $name;
+    }
+
+    /**
      * Get the current application
      *
      * @return string
@@ -88,6 +105,16 @@ class Theme
     public function getTheme()
     {
         return $this->theme ? $this->theme : 'default';
+    }
+
+    /**
+     * Gets the name of the current colour scheme for the current theme.
+     *
+     * @return string
+     */
+    public function getColourScheme()
+    {
+        return $this->colourScheme ? $this->colourScheme : 'default';
     }
 
     /**
@@ -156,18 +183,29 @@ class Theme
      */
     private function compileCss()
     {
-        $less = new lessc;
-        $less->setFormatter('compressed');
+        $compiler = new lessc;
+        $compiler->setFormatter('compressed');
+        $compiler->setImportDir(array(public_path("themes/{$this->getApplication()}/{$this->getTheme()}/stylesheets/less")));
 
         $lessFiles = $this->getStylesheets('less');
 
         foreach ($lessFiles as $lessFile) {
+            // Get the file name
             $pathBits = explode('/', $lessFile);
             $file = end($pathBits);
             $fileBits = explode('.', $file);
             $filename = $fileBits[0];
 
-            $less->checkedCompile($lessFile, $this->getAssetPath("stylesheets/css/{$filename}.css"));
+            // Setup the LESS string
+            $schemeName = $this->getColourScheme();
+            $scheme = "@import 'schemes/{$schemeName}.less';";
+            $less = file_get_contents($lessFile);
+
+            // compile the scheme and LESS string
+            $cssString = $compiler->compile($scheme.$less);
+
+            // Write to {filename}.css
+            File::put($this->getAssetPath("stylesheets/css/{$filename}.css"), $cssString);
         }
     }
 
