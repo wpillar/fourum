@@ -2,7 +2,6 @@
 
 use Fourum\View\FileViewFinder;
 use File;
-use lessc;
 
 /**
  * Theme
@@ -159,11 +158,71 @@ class Theme
     public function getStylesheets($type = null)
     {
         if ('less' === $type) {
-            return File::files(public_path("themes/{$this->getApplication()}/{$this->getTheme()}/stylesheets/less"));
+            return File::files($this->getThemeDir().'/stylesheets/less');
         }
         else  {
-            return File::files(public_path("themes/{$this->getApplication()}/{$this->getTheme()}/stylesheets/css"));
+            return File::files($this->getThemeDir().'/stylesheets/css');
         }
+    }
+
+    /**
+     * Return the "themes" directory.
+     *
+     * @return string
+     */
+    public function getThemesDir()
+    {
+        return public_path("themes");
+    }
+
+    /**
+     * Return the directory of the current application (admin, front).
+     *
+     * @return string
+     */
+    public function getApplicationDir()
+    {
+        return $this->getThemesDir().'/'.$this->getApplication();
+    }
+
+    /**
+     * Return the current theme directory.
+     *
+     * @return string
+     */
+    public function getThemeDir()
+    {
+        return $this->getApplicationDir().'/'.$this->getTheme();
+    }
+
+    /**
+     * Return the "stylesheets" directory for the current theme.
+     *
+     * @return string
+     */
+    public function getStylesheetsDir()
+    {
+        return $this->getThemeDir().'/stylesheets';
+    }
+
+    /**
+     * Return the "less" directory for the current theme.
+     *
+     * @return string
+     */
+    public function getLessDir()
+    {
+        return $this->getStylesheetsDir().'/less';
+    }
+
+    /**
+     * Return the "css" directory for the current theme.
+     *
+     * @return string
+     */
+    public function getCssDir()
+    {
+        return $This->getStylesheetsDir().'/css';
     }
 
     /**
@@ -173,40 +232,26 @@ class Theme
      */
     public function compile()
     {
-        $this->compileCss();
+        $compiler = new Compiler($this, array('css/bootstrap.css'));
+        $compiler->compile();
     }
 
     /**
-     * Compile any LESS files in the theme.
+     * Return a file name from a path.
      *
-     * @return void
+     * i.e. 'path/to/a/name.less' -> 'name'
+     *
+     * @param  string $path
+     * @return string
      */
-    private function compileCss()
+    private function getFilenameFromPath($path)
     {
-        $compiler = new lessc;
-        $compiler->setFormatter('compressed');
-        $compiler->setImportDir(array(public_path("themes/{$this->getApplication()}/{$this->getTheme()}/stylesheets/less")));
+        $pathBits = explode('/', $path);
+        $file = end($pathBits);
+        $fileBits = explode('.', $file);
+        $filename = $fileBits[0];
 
-        $lessFiles = $this->getStylesheets('less');
-
-        foreach ($lessFiles as $lessFile) {
-            // Get the file name
-            $pathBits = explode('/', $lessFile);
-            $file = end($pathBits);
-            $fileBits = explode('.', $file);
-            $filename = $fileBits[0];
-
-            // Setup the LESS string
-            $schemeName = $this->getColourScheme();
-            $scheme = "@import 'schemes/{$schemeName}.less';";
-            $less = file_get_contents($lessFile);
-
-            // compile the scheme and LESS string
-            $cssString = $compiler->compile($scheme.$less);
-
-            // Write to {filename}.css
-            File::put($this->getAssetPath("stylesheets/css/{$filename}.css"), $cssString);
-        }
+        return $filename;
     }
 
     /**
@@ -216,8 +261,8 @@ class Theme
     private function setup()
     {
         $paths = array(
-            public_path("themes/{$this->getApplication()}/{$this->getTheme()}/views"),
-            public_path("themes/{$this->getApplication()}/default/views")
+            $this->getThemeDir().'/views',
+            $this->getApplicationDir().'/default/views'
         );
 
         $this->finder->setPaths($paths);
