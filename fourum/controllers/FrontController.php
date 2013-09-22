@@ -1,6 +1,5 @@
 <?php namespace Fourum\Controllers;
 
-use Illuminate\Support\Facades\View;
 use Fourum\Facades\Theme;
 use Config;
 
@@ -10,6 +9,7 @@ class FrontController extends BaseController
     {
         Theme::setApplication('front');
         Theme::setTheme('default');
+        // Theme::setColourScheme('dark');
 
         if (Config::get('app.debug')) {
             Theme::compile();

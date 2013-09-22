@@ -28,18 +28,23 @@ class StorageServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            'Fourum\Storage\Forum\GroupRepositoryInterface',
-            'Fourum\Storage\Forum\EloquentGroupRepository'
+            'Fourum\Storage\Group\GroupRepositoryInterface',
+            'Fourum\Storage\Group\EloquentGroupRepository'
         );
 
         $this->app->bind(
-            'Fourum\Storage\Forum\PostRepositoryInterface',
-            'Fourum\Storage\Forum\EloquentPostRepository'
+            'Fourum\Storage\Post\PostRepositoryInterface',
+            'Fourum\Storage\Post\EloquentPostRepository'
         );
 
         $this->app->bind(
-            'Fourum\Storage\Forum\ThreadRepositoryInterface',
-            'Fourum\Storage\Forum\EloquentThreadRepository'
+            'Fourum\Storage\Thread\ThreadRepositoryInterface',
+            'Fourum\Storage\Thread\EloquentThreadRepository'
+        );
+
+        $this->app->bind(
+            'Fourum\Storage\Setting\SettingRepositoryInterface',
+            'Fourum\Storage\Setting\EloquentSettingRepository'
         );
     }
 }

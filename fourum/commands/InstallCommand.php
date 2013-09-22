@@ -4,6 +4,7 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Schema;
+use Fourum\Models\Setting;
 
 /**
  * Install Command
@@ -46,6 +47,16 @@ class InstallCommand extends Command {
 		$this->info('Installing...');
 
 		$this->setupDatabase();
+
+		$this->info('Building settings...');
+
+		$setting = new Setting();
+		$setting->namespace = 'general';
+		$setting->name = 'name';
+		$setting->title = 'Forum Name';
+		$setting->value = 'Fourum';
+		$setting->description = 'The name of the forum';
+		$setting->save();
 
 		$this->info('');
 		$this->info('Done!');
@@ -182,6 +193,19 @@ class InstallCommand extends Command {
 				$table->tinyInteger('read');
 				$table->timestamps();
 				$table->softDeletes();
+			},
+			'settings' => function($table) {
+				$table->engine = "InnoDb";
+
+				$table->increments('id')->unsigned();
+				$table->string('namespace');
+				$table->string('name');
+				$table->string('title');
+				$table->string('value');
+				$table->string('description');
+				$table->timestamps();
+				$table->softDeletes();
+				$table->unique(array('namespace', 'name'));
 			}
 		);
 	}
