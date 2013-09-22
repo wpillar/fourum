@@ -3,10 +3,10 @@
 use Fourum\Controllers\AdminController;
 use Illuminate\Support\Facades\View;
 
-class IndexController extends AdminController
+class UsersController extends AdminController
 {
     public function index()
     {
-        echo View::make('index');
+        echo View::make('users.index');
     }
 }
