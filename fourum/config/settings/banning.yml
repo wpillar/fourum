@@ -1,0 +1,4 @@
+quick.length:
+    title: "Quick Ban Length"
+    description: "The amount of <strong>days</strong> to ban a user for when quick banning."
+    value: "3"

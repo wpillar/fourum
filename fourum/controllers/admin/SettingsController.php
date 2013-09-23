@@ -2,12 +2,19 @@
 
 use Fourum\Controllers\AdminController;
 use Fourum\Models\Setting;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
 
+/**
+ * Settings Controller
+ */
 class SettingsController extends AdminController
 {
+    /**
+     * General Settings.
+     */
     public function index()
     {
         $settings = $this->settings->getByNamespace('general');
@@ -17,23 +24,31 @@ class SettingsController extends AdminController
         echo View::make('settings.general', $data);
     }
 
-    public function edit()
+    /**
+     * Banning settings.
+     */
+    public function banning()
+    {
+        $settings = $this->settings->getByNamespace('banning');
+
+        $data['settings'] = $settings;
+
+        echo View::make('settings.banning', $data);
+    }
+
+    /**
+     * Save settings.
+     */
+    public function save()
     {
         $newSettings = Input::all();
 
         foreach ($newSettings as $namespaceAndName => $value) {
             list($namespace, $name) = explode('_', $namespaceAndName);
 
-            $setting = $this->settings->getByNamespaceAndName($namespace, $name);
-            $setting->value = $value;
-            $setting->save();
+            $this->settings->set($namespace, $name, $value);
         }
 
         return Redirect::to('admin/settings')->with('message', '<strong>Saved!</strong> your settings have been saved.');
-    }
-
-    public function banning()
-    {
-        echo View::make('settings.banning');
     }
 }

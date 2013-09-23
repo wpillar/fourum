@@ -29,7 +29,7 @@ Route::group(array('prefix' => 'admin'), function()
      * Settings Routes
      */
     Route::get('/settings', 'Fourum\Controllers\Admin\SettingsController@index');
-    Route::post('/settings', 'Fourum\Controllers\Admin\SettingsController@edit');
+    Route::post('/settings', 'Fourum\Controllers\Admin\SettingsController@save');
 
     Route::get('/settings/banning', 'Fourum\Controllers\Admin\SettingsController@banning');
 

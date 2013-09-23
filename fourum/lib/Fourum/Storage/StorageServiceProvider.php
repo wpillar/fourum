@@ -41,10 +41,5 @@ class StorageServiceProvider extends ServiceProvider
             'Fourum\Storage\Thread\ThreadRepositoryInterface',
             'Fourum\Storage\Thread\EloquentThreadRepository'
         );
-
-        $this->app->bind(
-            'Fourum\Storage\Setting\SettingRepositoryInterface',
-            'Fourum\Storage\Setting\EloquentSettingRepository'
-        );
     }
 }

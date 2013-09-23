@@ -2,14 +2,14 @@
 
 use Fourum\Facades\Theme;
 use Config;
-use Fourum\Storage\Setting\SettingRepositoryInterface;
+use Fourum\Storage\Setting\Manager;
 use Illuminate\Support\Facades\View;
 
 class AdminController extends BaseController
 {
     protected $settings;
 
-    public function __construct(SettingRepositoryInterface $settings)
+    public function __construct(Manager $settings)
     {
         // $this->beforeFilter('admin.auth');
 

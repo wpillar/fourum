@@ -1,6 +1,8 @@
 <?php namespace Fourum\Storage\Setting;
 
 use Fourum\Models\Setting;
+use Illuminate\Support\Facades\File;
+use Symfony\Component\Yaml\Parser;
 
 /**
  * Eloquent Setting Repository
@@ -27,9 +29,9 @@ class EloquentSettingRepository implements SettingRepositoryInterface
      */
     public function getByNamespace($namespace)
     {
-        $settings = Setting::where('namespace', $namespace)->get();
+        $dbSettings = Setting::where('namespace', $namespace)->get();
 
-        return $settings;
+        return $this->normaliseSettings($namespace, $dbSettings);
     }
 
     /**
@@ -57,6 +59,35 @@ class EloquentSettingRepository implements SettingRepositoryInterface
 
         $setting = $this->getByNamespaceAndName($namespace, $name);
 
-        return $setting->value;
+        if ($setting) {
+            return $setting->value;
+        }
+
+        return null;
+    }
+
+    /**
+     * Normalise settings into a standard array.
+     *
+     * @param  string $namespace
+     * @param  array $settings
+     * @return array
+     */
+    private function normaliseSettings($namespace, $settings)
+    {
+        $normalisedSettings = array();
+
+        foreach ($settings as $dbSetting) {
+            $setting = array();
+            $setting['namespace'] = $namespace;
+            $setting['name'] = $dbSetting->name;
+            $setting['title'] = $dbSetting->title;
+            $setting['description'] = $dbSetting->description;
+            $setting['value'] = $dbSetting->value;
+
+            $normalisedSettings[$setting['name']] = $setting;
+        }
+
+        return $normalisedSettings;
     }
 }

@@ -12,13 +12,9 @@
         <?= View::make('settings.sidebar') ?>
     </div>
     <div class="col-md-9" style="height:1000px;">
-        <h4>Suspensions & Banning</h4>
+        <h4 style="margin-bottom:20px;">Suspensions & Banning</h4>
 
-        <? if (Session::get('message')): ?>
-        <div class="alert alert-success">
-            <?= Session::get('message') ?>
-        </div>
-        <? endif ?>
+        <?= View::make('settings.form', array('settings' => $settings)) ?>
     </div>
 </div>
 
