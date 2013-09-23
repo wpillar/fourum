@@ -222,7 +222,7 @@ class Theme
      */
     public function getCssDir()
     {
-        return $This->getStylesheetsDir().'/css';
+        return $this->getStylesheetsDir().'/css';
     }
 
     /**
@@ -234,24 +234,6 @@ class Theme
     {
         $compiler = new Compiler($this, array('css/bootstrap.css'));
         $compiler->compile();
-    }
-
-    /**
-     * Return a file name from a path.
-     *
-     * i.e. 'path/to/a/name.less' -> 'name'
-     *
-     * @param  string $path
-     * @return string
-     */
-    private function getFilenameFromPath($path)
-    {
-        $pathBits = explode('/', $path);
-        $file = end($pathBits);
-        $fileBits = explode('.', $file);
-        $filename = $fileBits[0];
-
-        return $filename;
     }
 
     /**
