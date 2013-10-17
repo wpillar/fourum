@@ -1,4 +1,5 @@
 install:
+	@composer install --dev
 	@php artisan install
 
 tests:
