@@ -22,8 +22,10 @@ class AdminController extends BaseController
             Theme::compile();
         }
 
-        View::composer('header', function($view) {
-            $view->with('forumName', $this->settings->get('general.name'));
+        $generalName = $this->settings->get('general.name');
+
+        View::composer('header', function($view) use ($generalName) {
+            $view->with('forumName', $generalName);
         });
     }
 }
