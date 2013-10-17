@@ -2,6 +2,5 @@
 /vendor
 /fourum/tests/report
 composer.phar
-composer.lock
 .DS_Store
 .vagrant/
