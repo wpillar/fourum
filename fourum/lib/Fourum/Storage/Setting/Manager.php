@@ -51,15 +51,15 @@ class Manager
             $setting->value = $value;
             $setting->save();
         } elseif ($value !== $setting['value']) {
-            $new = new Setting();
-            $new->namespace = $namespace;
-            $new->name = $name;
-            $new->title = $setting['title'];
-            $new->value = $value;
-            $new->description = $setting['description'];
-            $new->save();
+            $data = array(
+                'namespace' => $namespace,
+                'name' => $name,
+                'title' => $setting['title'],
+                'value' => $value,
+                'description' => $setting['description']
+            );
 
-            $setting = $new;
+            $setting = $this->db->create($data);
         }
 
         return $setting;
