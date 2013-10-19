@@ -76,7 +76,7 @@ class Manager
         $dbSettings = $this->db->getByNamespace($namespace);
         $fileSettings = $this->file->getByNamespace($namespace);
 
-        return array_merge($dbSettings, $fileSettings);
+        return array_merge($fileSettings, $dbSettings);
     }
 
     /**
