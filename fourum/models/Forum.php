@@ -5,7 +5,7 @@ use Fourum\Storage\Forum\ForumInterface;
 /**
  * Eloquent Forum Model
  */
-class Forum extends Eloquent implements ForumInterface
+class Forum extends \Eloquent implements ForumInterface
 {
     protected $table = 'forums';
 
