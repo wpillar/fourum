@@ -92,12 +92,12 @@ class Manager
 
         if ($dbSetting) {
             return $dbSetting;
-        } else {
-            $fileSetting = $this->file->getByNamespaceAndName($namespace, $name);
+        }
 
-            if ($fileSetting) {
-                return $fileSetting;
-            }
+        $fileSetting = $this->file->getByNamespaceAndName($namespace, $name);
+
+        if ($fileSetting) {
+            return $fileSetting;
         }
 
         return null;
@@ -115,8 +115,8 @@ class Manager
 
         if ($dbSetting) {
             return $dbSetting;
-        } else {
-            return $this->file->get($name);
         }
+
+        return $this->file->get($name);
     }
 }
