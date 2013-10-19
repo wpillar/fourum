@@ -1,7 +1,7 @@
 <?php namespace Fourum\Theme;
 
 use lessc;
-use File;
+use Illuminate\Filesystem\Filesystem;
 
 /**
  * Theme Compiler
@@ -25,15 +25,21 @@ class Compiler
     private $excludes;
 
     /**
+     * @var Filesystem
+     */
+    private $file;
+
+    /**
      * Construct the Compiler.
      *
      * @param Theme $theme
      * @param array $excludes
      */
-    public function __construct(Theme $theme, array $excludes)
+    public function __construct(Theme $theme, Filesystem $file, array $excludes = null)
     {
         $this->theme = $theme;
         $this->excludes = $excludes;
+        $this->file = $file;
     }
 
     /**
@@ -83,12 +89,12 @@ class Compiler
             $lessString = '';
 
             foreach ($lessFiles as $lessFile) {
-                $lessString .= File::get($this->theme->getStylesheetsDir().'/'.$lessFile);
+                $lessString .= $this->file->get($this->theme->getStylesheetsDir().'/'.$lessFile);
             }
 
             $cssString = $compiler->compile($lessString);
 
-            File::put($this->theme->getStylesheetsDir().'/'.$cssFile, $cssString);
+            $this->file->put($this->theme->getStylesheetsDir().'/'.$cssFile, $cssString);
         }
     }
 
@@ -99,11 +105,11 @@ class Compiler
      */
     private function getBuildFile()
     {
-        if (! File::exists($this->theme->getStylesheetsDir().'/build.json')) {
-            throw new \Exception("Cannot find build.json for {$this->theme->getTheme()} theme.");
+        if (! $this->file->exists($this->theme->getStylesheetsDir().'/build.json')) {
+            throw new BuildFileNotFoundException("Cannot find build.json for {$this->theme->getTheme()} theme.");
         }
 
-        return File::get($this->theme->getStylesheetsDir().'/build.json');
+        return $this->file->get($this->theme->getStylesheetsDir().'/build.json');
     }
 
     /**

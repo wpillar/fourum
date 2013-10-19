@@ -12,7 +12,11 @@ class ThemeTest extends TestCase
         $fileViewFinder = m::mock('Fourum\View\FileViewFinder');
         $fileViewFinder->shouldReceive('setPaths')->once();
 
-        $this->theme = new Theme($fileViewFinder);
+        $fileSystem = m::mock('Illuminate\Filesystem\Filesystem');
+        $fileSystem->shouldReceive('files')->once()->with('/srv/public/themes/admin/default/stylesheets/less')->andReturn(array());
+        $fileSystem->shouldReceive('files')->once()->with('/srv/public/themes/admin/default/stylesheets/css')->andReturn(array());
+
+        $this->theme = new Theme($fileViewFinder, $fileSystem);
         $this->theme->setApplication('admin');
     }
 

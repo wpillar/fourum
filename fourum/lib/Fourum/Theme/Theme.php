@@ -2,6 +2,7 @@
 
 use Fourum\View\FileViewFinder;
 use File;
+use Illuminate\Filesystem\Filesystem;
 
 /**
  * Theme
@@ -39,13 +40,19 @@ class Theme
     protected $colourScheme;
 
     /**
+     * @var Filesystem
+     */
+    private $file;
+
+    /**
      * Set me up with a Fourum\View\FileViewFinder instance.
      *
      * @param FileViewFinder $finder
      */
-    public function __construct(FileViewFinder $finder)
+    public function __construct(FileViewFinder $finder, Filesystem $file)
     {
         $this->finder = $finder;
+        $this->file = $file;
     }
 
     /**
@@ -158,10 +165,10 @@ class Theme
     public function getStylesheets($type = null)
     {
         if ('less' === $type) {
-            return File::files($this->getThemeDir().'/stylesheets/less');
+            return $this->file->files($this->getThemeDir().'/stylesheets/less');
         }
         else  {
-            return File::files($this->getThemeDir().'/stylesheets/css');
+            return $this->file->files($this->getThemeDir().'/stylesheets/css');
         }
     }
 
@@ -232,7 +239,7 @@ class Theme
      */
     public function compile()
     {
-        $compiler = new Compiler($this, array('css/bootstrap.css'));
+        $compiler = new Compiler($this, $this->file, array('css/bootstrap.css'));
         $compiler->compile();
     }
 

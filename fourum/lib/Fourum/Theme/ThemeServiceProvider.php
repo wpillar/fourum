@@ -14,7 +14,7 @@ class ThemeServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app['theme'] = $this->app->share(function($app) {
-            return new Theme($app['view.finder']);
+            return new Theme($app['view.finder'], $app['files']);
         });
     }
 }
