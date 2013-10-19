@@ -84,6 +84,12 @@ class FileSettingRepository implements SettingRepositoryInterface
     }
 
     /**
+     * @param  array  $input
+     * @return void
+     */
+    public function create(array $input) {}
+
+    /**
      * Return a file name from a path.
      *
      * i.e. 'path/to/a/name.less' -> 'name'

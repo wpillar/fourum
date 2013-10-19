@@ -11,4 +11,6 @@ interface SettingRepositoryInterface
     public function getByNamespace($namespace);
 
     public function getByNamespaceAndName($namespace, $name);
+
+    public function create(array $input);
 }

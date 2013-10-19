@@ -67,6 +67,15 @@ class EloquentSettingRepository implements SettingRepositoryInterface
     }
 
     /**
+     * @param  array  $input
+     * @return Setting
+     */
+    public function create(array $input)
+    {
+        return Setting::create($input);
+    }
+
+    /**
      * Normalise settings into a standard array.
      *
      * @param  string $namespace
