@@ -5,8 +5,8 @@
 	"require": {
 		"laravel/framework": "4.0.*",
 		"baum/baum": "~1.0",
-		"leafo/lessphp": "v0.4.0",
-		"symfony/yaml": "v2.3.4"
+		"leafo/lessphp": "0.4.*",
+		"symfony/yaml": "2.3.*"
 	},
 	"require-dev": {
         "phpunit/phpunit": "3.7.*",
