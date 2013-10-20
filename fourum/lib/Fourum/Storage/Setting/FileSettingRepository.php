@@ -1,7 +1,7 @@
 <?php namespace Fourum\Storage\Setting;
 
 use Fourum\Models\Setting;
-use Illuminate\Support\Facades\File;
+use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Parser;
 
 /**
@@ -13,13 +13,32 @@ use Symfony\Component\Yaml\Parser;
 class FileSettingRepository implements SettingRepositoryInterface
 {
     /**
+     * @var Illuminate\Filesystem\Filesystem
+     */
+    private $file;
+
+    /**
+     * @var Symfony\Component\Yaml\Parser
+     */
+    private $parser;
+
+    /**
+     * @param Illuminate\Filesystem\Filesystem $file
+     */
+    public function __construct(Filesystem $file, Parser $parser)
+    {
+        $this->file = $file;
+        $this->parser = $parser;
+    }
+
+    /**
      * Get all settings from all YAML files.
      *
      * @return array
      */
     public function all()
     {
-        $namespaceFiles = File::files($this->getSettingsDir());
+        $namespaceFiles = $this->file->files($this->getSettingsDir());
 
         $settings = array();
 
@@ -140,9 +159,7 @@ class FileSettingRepository implements SettingRepositoryInterface
      */
     private function getSettingsFromFile($filePath)
     {
-        $yaml = new Parser();
-
-        return $yaml->parse(File::get($filePath));
+        return $this->parser->parse($this->file->get($filePath));
     }
 
     /**
