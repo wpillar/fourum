@@ -11,6 +11,8 @@ class AdminController extends BaseController
 
     public function __construct(Manager $settings)
     {
+        parent::__construct();
+
         // $this->beforeFilter('admin.auth');
 
         $this->settings = $settings;
