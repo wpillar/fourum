@@ -11,4 +11,19 @@ interface ForumInterface
      * @return Fourum\Models\Forum\Type
      */
     public function type();
+
+    /**
+     * @return NodeInterface
+     */
+    public function getNode();
+
+    /**
+     * @return boolean
+     */
+    public function isCategory();
+
+    /**
+     * @return boolean
+     */
+    public function isForum();
 }
