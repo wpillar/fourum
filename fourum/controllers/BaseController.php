@@ -1,11 +1,22 @@
 <?php namespace Fourum\Controllers;
 
 use Illuminate\Support\Facades\View;
+use Fourum\Tree\Node;
 
 /**
  * Laravel's Base Controller
  */
-class BaseController extends \Controller {
+class BaseController extends \Controller
+{
+	/**
+	 * @var Fourum\Tree\Node
+	 */
+	protected $tree;
+
+	public function __construct()
+	{
+		$this->tree = Node::root();
+	}
 
 	/**
 	 * Setup the layout used by the controller.
