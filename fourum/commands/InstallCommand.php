@@ -4,7 +4,10 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Schema;
+use Fourum\Models\Forum;
+use Fourum\Models\Forum\Type;
 use Fourum\Models\Setting;
+use Fourum\Tree\Node;
 
 /**
  * Install Command
@@ -50,16 +53,41 @@ class InstallCommand extends Command {
 
 		$this->info('Building settings...');
 
-		$setting = new Setting();
-		$setting->namespace = 'general';
-		$setting->name = 'name';
-		$setting->title = 'Forum Name';
-		$setting->value = 'Fourum';
-		$setting->description = 'The name of the forum';
-		$setting->save();
+		$this->info('Bootstrapping the forum...');
+
+		$this->bootstrap();
 
 		$this->info('');
 		$this->info('Done!');
+	}
+
+	private function bootstrap()
+	{
+		$root = Node::create(array('forum_id' => null));
+
+		$typeForum = new Type();
+		$typeForum->name = 'forum';
+		$typeForum->save();
+
+		$typeCategory = new Type();
+		$typeCategory->name = 'category';
+		$typeCategory->save();
+
+		$category = new Forum();
+		$category->title = "My Category";
+		$category->type = $typeCategory->id;
+		$category->save();
+
+		$forum = new Forum();
+		$forum->title = "My Forum";
+		$forum->type = $typeForum->id;
+		$forum->save();
+
+		$categoryNode = Node::create(array('forum_id' => $category->id));
+		$categoryNode->makeChildOf($root);
+
+		$forumNode = Node::create(array('forum_id' => $forum->id));
+		$forumNode->makeChildOf($categoryNode);
 	}
 
 	/**
@@ -147,7 +175,7 @@ class InstallCommand extends Command {
 				$table->integer('left')->nullable();
 				$table->integer('right')->nullable();
 				$table->integer('depth')->nullable();
-				$table->integer('forum_id')->unsigned();
+				$table->integer('forum_id')->unsigned()->nullable();
 
 				// Add needed columns here (f.ex: name, slug, path, etc.)
 				// $table->string('name', 255);
