@@ -29,16 +29,31 @@ Route::group(array('prefix' => 'admin'), function()
      * Settings Routes
      */
     Route::get('/settings', 'Fourum\Controllers\Admin\SettingsController@index');
-    Route::post('/settings', 'Fourum\Controllers\Admin\SettingsController@save');
-
     Route::get('/settings/banning', 'Fourum\Controllers\Admin\SettingsController@banning');
 
-    Route::get('/forums', 'Fourum\Controllers\Admin\ForumsController@index');
+    Route::post('/settings', 'Fourum\Controllers\Admin\SettingsController@save');
 
+    /**
+     * Forums Routes
+     */
+    Route::get('/forums', 'Fourum\Controllers\Admin\ForumsController@index');
+    Route::get('/forums/add', 'Fourum\Controllers\Admin\ForumsController@add');
+
+    Route::post('/forums/add', 'Fourum\Controllers\Admin\ForumsController@save');
+
+    /**
+     * Users Routes
+     */
     Route::get('/users', 'Fourum\Controllers\Admin\UsersController@index');
 
+    /**
+     * Groups Routes
+     */
     Route::get('/groups', 'Fourum\Controllers\Admin\GroupsController@index');
 
+    /**
+     * Themes Routes
+     */
     Route::get('/themes', 'Fourum\Controllers\Admin\ThemesController@index');
 
 });
