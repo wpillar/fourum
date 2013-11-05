@@ -7,6 +7,8 @@ class FrontController extends BaseController
 {
     public function __construct()
     {
+        parent::__construct();
+
         Theme::setApplication('front');
         Theme::setTheme('default');
         // Theme::setColourScheme('dark');
