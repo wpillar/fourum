@@ -1,4 +1,6 @@
-<?php namespace Fourum\Storage;
+<?php
+
+namespace Fourum\Storage;
 
 use Illuminate\Support\ServiceProvider;
 
