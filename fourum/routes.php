@@ -32,7 +32,6 @@ Route::group(array('prefix' => 'admin'), function()
      */
     Route::get('/settings', 'Fourum\Controllers\Admin\SettingsController@index');
     Route::get('/settings/banning', 'Fourum\Controllers\Admin\SettingsController@banning');
-
     Route::post('/settings', 'Fourum\Controllers\Admin\SettingsController@save');
 
     /**
@@ -40,7 +39,6 @@ Route::group(array('prefix' => 'admin'), function()
      */
     Route::get('/forums', 'Fourum\Controllers\Admin\ForumsController@index');
     Route::get('/forums/add', 'Fourum\Controllers\Admin\ForumsController@add');
-
     Route::post('/forums/add', 'Fourum\Controllers\Admin\ForumsController@save');
 
     /**
