@@ -16,7 +16,9 @@
  */
 Route::get('/', 'Fourum\Controllers\Front\HomeController@showWelcome');
 Route::get('/install', 'Fourum\Controllers\Front\InstallController@index');
-Route::get('/login', 'Fourum\Controllers\Front\AuthController@login');
+
+// auth routes
+Route::controller('auth', 'Fourum\Controllers\Front\AuthController');
 
 /**
  * Admin Routes

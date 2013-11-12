@@ -2,6 +2,11 @@
 
 use Fourum\Storage\User\UserRepositoryInterface;
 use Fourum\Controllers\FrontController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\View;
 
 /**
  * Auth Controller
@@ -23,21 +28,51 @@ class AuthController extends FrontController
      */
     public function __construct(UserRepositoryInterface $userRepository)
     {
+        parent::__construct();
+
         $this->users = $userRepository;
     }
 
     /**
-     * Index
-     *
-     * @return void
+     * @return View
      */
-    public function index()
+    public function getLogin()
     {
-        var_dump($this->users->all());
+        return View::make('auth.login');
     }
 
-    public function login()
+    public function postLogin()
     {
-        echo 'front login';
+        $email = Input::get('email');
+        $password = Input::get('password');
+
+        $credentials = array(
+            'email' => $email,
+            'password' => $password
+        );
+
+        if (Auth::attempt($credentials)) {
+            return Redirect::to('admin');
+        } else {
+            $json = array(
+                'authenticated' => false
+            );
+
+            return Response::json($json);
+        }
+    }
+
+    public function getLogout()
+    {
+        Auth::logout();
+
+        return Redirect::to('auth/login');
+    }
+
+    public function postLogout()
+    {
+        Auth::logout();
+
+        return Redirect::to('auth/login');
     }
 }

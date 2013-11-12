@@ -13,7 +13,7 @@ class AdminController extends BaseController
     {
         parent::__construct();
 
-        // $this->beforeFilter('admin.auth');
+        $this->beforeFilter('admin.auth');
 
         $this->settings = $settings;
 
