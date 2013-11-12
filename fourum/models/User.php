@@ -1,8 +1,9 @@
 <?php namespace Fourum\Models;
 
+use Fourum\Storage\User\UserInterface;
 use Illuminate\Auth\UserInterface as IlluminateUserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
-use Fourum\Storage\User\UserInterface;
+use Illuminate\Support\Facades\Hash;
 
 class User extends \Eloquent implements UserInterface, IlluminateUserInterface, RemindableInterface
 {
@@ -58,5 +59,37 @@ class User extends \Eloquent implements UserInterface, IlluminateUserInterface, 
 	public function groups()
 	{
 		return $this->belongsToMany('Group');
+	}
+
+	/**
+	 * @param string $email
+	 */
+	public function setEmail($email)
+	{
+		$this->email = $email;
+	}
+
+	/**
+	 * @param string $password
+	 */
+	public function setPassword($password)
+	{
+		$this->password = Hash::make($password);
+	}
+
+	/**
+	 * @param string $username
+	 */
+	public function setUsername($username)
+	{
+		$this->username = $username;
+	}
+
+	/**
+	 * @param string $date
+	 */
+	public function setBirthDate($date)
+	{
+		$this->birthdate = $date;
 	}
 }
