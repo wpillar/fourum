@@ -719,12 +719,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "03563aad714d5cc7c4309ae16ab2e21565435638"
+                "reference": "0810bd6ef5d610c61b728e82a7e02caef2cad342"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/03563aad714d5cc7c4309ae16ab2e21565435638",
-                "reference": "03563aad714d5cc7c4309ae16ab2e21565435638",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/0810bd6ef5d610c61b728e82a7e02caef2cad342",
+                "reference": "0810bd6ef5d610c61b728e82a7e02caef2cad342",
                 "shasum": ""
             },
             "require": {
@@ -782,10 +782,10 @@
                 "illuminate/workbench": "self.version"
             },
             "require-dev": {
-                "aws/aws-sdk-php": "2.2.*",
-                "iron-io/iron_mq": "1.4.4",
+                "aws/aws-sdk-php": "2.4.*",
+                "iron-io/iron_mq": "1.4.*",
                 "mockery/mockery": "0.8.0",
-                "pda/pheanstalk": "2.0.*",
+                "pda/pheanstalk": "2.1.*",
                 "phpunit/phpunit": "3.7.*"
             },
             "type": "library",
@@ -824,7 +824,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2013-10-16 13:26:55"
+            "time": "2013-11-12 04:40:26"
         },
         {
             "name": "leafo/lessphp",
