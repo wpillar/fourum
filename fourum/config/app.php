@@ -116,7 +116,8 @@ return array(
 		'Baum\BaumServiceProvider',
 		'Fourum\Storage\StorageServiceProvider',
 		'Fourum\Theme\ThemeServiceProvider',
-		'Fourum\View\ViewServiceProvider'
+		'Fourum\View\ViewServiceProvider',
+		'Fourum\Tree\TreeServiceProvider'
 	),
 
 	/*

@@ -1,9 +1,12 @@
-<?php namespace Fourum\Controllers\Admin;
+<?php
+
+namespace Fourum\Controllers\Admin;
 
 use Fourum\Controllers\AdminController;
 use Fourum\Models\Forum\Type;
 use Fourum\Models\Forum;
 use Fourum\Tree\Node;
+use Fourum\Tree\NodeRepositoryInterface;
 use Fourum\Storage\Forum\ForumRepositoryInterface;
 use Fourum\Storage\Setting\Manager;
 use Illuminate\Support\Facades\View;
@@ -18,14 +21,23 @@ class ForumsController extends AdminController
     private $forumRepository;
 
     /**
+     * @var NodeRepositoryInterface
+     */
+    private $nodeRepository;
+
+    /**
      * @param Manager $manager
      * @param ForumRepositoryInterface $forumRepository
      */
-    public function __construct(Manager $manager, ForumRepositoryInterface $forumRepository)
-    {
+    public function __construct(
+        Manager $manager,
+        ForumRepositoryInterface $forumRepository,
+        NodeRepositoryInterface $nodeRepository
+    ) {
         parent::__construct($manager);
 
         $this->forumRepository = $forumRepository;
+        $this->nodeRepository = $nodeRepository;
     }
 
     /**
@@ -67,10 +79,10 @@ class ForumsController extends AdminController
             $parent = $this->forumRepository->get($parent);
             $parentNode = $parent->getNode();
 
-            $forumNode = Node::create(array('forum_id' => $forum->id));
+            $forumNode = $this->nodeRepository->create(array('forum_id' => $forum->id));
             $forumNode->makeChildOf($parentNode);
         } else {
-            $forumNode = Node::create(array('forum_id' => $forum->id));
+            $forumNode = $this->nodeRepository->create(array('forum_id' => $forum->id));
             $forumNode->makeChildOf($this->tree);
         }
 

@@ -1,8 +1,12 @@
-<?php namespace Fourum\Models;
+<?php
+
+namespace Fourum\Models;
 
 use Fourum\Storage\Forum\ForumInterface;
 use Fourum\Models\Forum\Type;
 use Fourum\Tree\Node;
+use Fourum\Tree\NodeRepositoryInterface;
+use Illuminate\Support\Facades\App;
 
 /**
  * Eloquent Forum Model
@@ -10,6 +14,18 @@ use Fourum\Tree\Node;
 class Forum extends \Eloquent implements ForumInterface
 {
     protected $table = 'forums';
+
+    /**
+     * @var NodeRepositoryInterface
+     */
+    private $nodeRepository;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->nodeRepository = App::make('Fourum\Tree\NodeRepositoryInterface');
+    }
 
     /**
      * Get the Type of the Forum
@@ -26,7 +42,7 @@ class Forum extends \Eloquent implements ForumInterface
      */
     public function getNode()
     {
-        return Node::where('forum_id', $this->id)->first();
+        return $this->nodeRepository->getByForum($this->id);
     }
 
     /**
