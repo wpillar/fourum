@@ -7,6 +7,7 @@ use Schema;
 use Fourum\Models\Forum;
 use Fourum\Models\Forum\Type;
 use Fourum\Models\Setting;
+use Fourum\Models\User;
 use Fourum\Tree\Node;
 
 /**
@@ -62,6 +63,22 @@ class InstallCommand extends Command {
 	}
 
 	private function bootstrap()
+	{
+		$this->bootstrapForums();
+		$this->bootstrapUsers();
+	}
+
+	private function bootstrapUsers()
+	{
+		$user = new User();
+		$user->setEmail('me@willpillar.com');
+		$user->setPassword('blobby');
+		$user->setUsername('wpillar');
+		$user->setBirthDate('1989-09-19');
+		$user->save();
+	}
+
+	private function bootstrapForums()
 	{
 		$root = Node::create(array('forum_id' => null));
 
