@@ -21,6 +21,8 @@ class HomeController extends FrontController
 
 	public function showWelcome()
 	{
-		return View::make('hello');
+		$data['tree'] = $this->tree;
+
+		return View::make('index', $data);
 	}
 }
