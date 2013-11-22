@@ -3,6 +3,7 @@
 namespace Fourum\Models;
 
 use Fourum\Storage\Forum\ForumInterface;
+use Fourum\Models\Thread;
 use Fourum\Models\Forum\Type;
 use Fourum\Tree\Node;
 use Fourum\Tree\NodeRepositoryInterface;
@@ -38,6 +39,19 @@ class Forum extends \Eloquent implements ForumInterface
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function threads()
+    {
+        return $this->hasMany('Fourum\Models\Thread');
+    }
+
+    public function getThreads()
+    {
+        return $this->threads()->get();
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Model
      */
     public function getNode()
@@ -58,6 +72,30 @@ class Forum extends \Eloquent implements ForumInterface
      */
     public function isForum()
     {
-        return $this->type === Type::getCategoryType()->id;
+        return $this->type === Type::getForumType()->id;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return url("/forum/{$this->getId()}");
     }
 }

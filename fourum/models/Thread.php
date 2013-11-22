@@ -5,9 +5,11 @@ use Fourum\Storage\Thread\ThreadInterface;
 /**
  * Eloquent Thread Model
  */
-class Thread extends Eloquent implements ThreadInterface
+class Thread extends \Eloquent implements ThreadInterface
 {
     protected $table = 'threads';
+
+    protected $guarded = array('id');
 
     /**
      * Get Posts belonging to this Thread.
@@ -16,6 +18,21 @@ class Thread extends Eloquent implements ThreadInterface
      */
     public function posts()
     {
-        return $this->hasMany('Post');
+        return $this->hasMany('Fourum\Models\Post');
+    }
+
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function getUrl()
+    {
+        return url("thread/view/{$this->id}");
+    }
+
+    public function getPosts()
+    {
+        return $this->posts()->get();
     }
 }

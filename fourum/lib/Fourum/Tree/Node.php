@@ -103,7 +103,8 @@ class Node extends BaumNode {
         $keys = $matches[1];
 
         foreach ($keys as $key) {
-            $target = str_replace('%' . $key . '%', $forum->$key, $target);
+            $method = 'get' . ucwords($key);
+            $target = str_replace('%' . $key . '%', $forum->$method(), $target);
         }
 
         return $target;

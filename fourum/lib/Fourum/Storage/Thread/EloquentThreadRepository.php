@@ -1,4 +1,6 @@
-<?php namepace Fourum\Storage\Thread;
+<?php
+
+namespace Fourum\Storage\Thread;
 
 use Fourum\Models\Thread;
 
@@ -12,7 +14,7 @@ class EloquentThreadRepository implements ThreadRepositoryInterface
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function all();
+    public function all()
     {
         return Thread::all();
     }
@@ -35,5 +37,10 @@ class EloquentThreadRepository implements ThreadRepositoryInterface
     public function create(array $input)
     {
         return Thread::create($input);
+    }
+
+    public function hydrate(array $input)
+    {
+        return new Thread($input);
     }
 }

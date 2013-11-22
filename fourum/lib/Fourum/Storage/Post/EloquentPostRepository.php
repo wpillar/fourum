@@ -38,4 +38,9 @@ class EloquentPostRepository implements PostRepositoryInterface
     {
         return Post::create($input);
     }
+
+    public function hydrate(array $input)
+    {
+        return new Post($input);
+    }
 }

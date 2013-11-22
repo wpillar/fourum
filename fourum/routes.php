@@ -20,6 +20,14 @@ Route::get('/install', 'Fourum\Controllers\Front\InstallController@index');
 // auth routes
 Route::controller('auth', 'Fourum\Controllers\Front\AuthController');
 
+// forum routes
+Route::get('/forum/{id}', 'Fourum\Controllers\Front\ForumController@view');
+
+// thread routes
+Route::get('/thread/create/{forumId}', 'Fourum\Controllers\Front\ThreadController@getCreate');
+Route::post('/thread/create/{forumId}', 'Fourum\Controllers\Front\ThreadController@postCreate');
+Route::get('/thread/view/{id}', 'Fourum\Controllers\Front\ThreadController@view');
+
 /**
  * Admin Routes
  */
