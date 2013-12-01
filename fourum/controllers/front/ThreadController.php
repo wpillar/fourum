@@ -3,9 +3,12 @@
 namespace Fourum\Controllers\Front;
 
 use Fourum\Controllers\FrontController;
+use Fourum\Models\Forum;
+use Fourum\Models\Thread;
 use Fourum\Storage\Forum\ForumRepositoryInterface;
 use Fourum\Storage\Post\PostRepositoryInterface;
 use Fourum\Storage\Thread\ThreadRepositoryInterface;
+use Fourum\Validation\ValidatorRegistry;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
@@ -21,9 +24,10 @@ class ThreadController extends FrontController
 	public function __construct(
 		ThreadRepositoryInterface $threadRepository,
 		ForumRepositoryInterface $forumRepository,
-		PostRepositoryInterface $postRepository
+		PostRepositoryInterface $postRepository,
+		ValidatorRegistry $registry
 	) {
-		parent::__construct();
+		parent::__construct($registry);
 
 		$this->threads = $threadRepository;
 		$this->forums = $forumRepository;
@@ -52,23 +56,47 @@ class ThreadController extends FrontController
 	{
 		$forum = $this->forums->get($forumId);
 
-		$thread = array(
-			'title' => Input::get('title'),
-			'user_id' => 0,
-			'views' => 0
+		$postValidation = array(
+			'content' => Input::get('content')
 		);
 
-		$thread = $this->threads->hydrate($thread);
-		$forum->threads()->save($thread);
+		$threadValidation = array(
+			'title' => Input::get('title')
+		);
 
+		$threadValidator = $this->getValidator('thread');
+		if (! $threadValidator->validate($threadValidation)) {
+			return Redirect::to("thread/create/$forumId")->withErrors($threadValidator)->withInput();
+		}
+
+		$postValidator = $this->getValidator('post');
+		if (! $postValidator->validate($postValidation)) {
+			return Redirect::to("thread/create/$forumId")->withErrors($postValidator)->withInput();
+		}
+
+		$thread = $this->saveThread($forum);
+		$this->savePost($thread);
+
+		return Redirect::to($forum->getUrl());
+	}
+
+	private function savePost(Thread $thread)
+	{
 		$post = array(
-			'content' => Input::get('content'),
-			'user_id' => 0
+			'content' => Input::get('content')
 		);
 
 		$post = $this->posts->hydrate($post);
-		$thread->posts()->save($post);
+		return $thread->posts()->save($post);
+	}
 
-		return Redirect::to($forum->getUrl());
+	private function saveThread(Forum $forum)
+	{
+		$thread = array(
+			'title' => Input::get('title')
+		);
+
+		$thread = $this->threads->hydrate($thread);
+		return $forum->threads()->save($thread);
 	}
 }

@@ -4,15 +4,16 @@ namespace Fourum\Controllers\Front;
 
 use Fourum\Controllers\FrontController;
 use Fourum\Storage\Forum\ForumRepositoryInterface;
+use Fourum\Validation\ValidatorRegistry;
 use Illuminate\Support\Facades\View;
 
 class ForumController extends FrontController
 {
 	protected $forums;
 
-	public function __construct(ForumRepositoryInterface $forumRepository)
+	public function __construct(ForumRepositoryInterface $forumRepository, ValidatorRegistry $registry)
 	{
-		parent::__construct();
+		parent::__construct($registry);
 
 		$this->forums = $forumRepository;
 	}

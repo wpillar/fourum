@@ -5,6 +5,12 @@
 	<div class="col-md-12">
 		<h3>New Thread</h3>
 
+        <?php foreach ($errors->all() as $error): ?>
+        <div class="alert alert-danger">
+            <?= $error ?>
+        </div>
+        <?php endforeach ?>
+
 		<?= View::make('thread.form', array('forum' => $forum)) ?>
 	</div>
 </div>

@@ -35,4 +35,14 @@ class Thread extends \Eloquent implements ThreadInterface
     {
         return $this->posts()->get();
     }
+
+    public function getForum()
+    {
+        return $this->forum()->get();
+    }
+
+    private function forum()
+    {
+        return $this->belongsTo('Fourum\Models\Forum');
+    }
 }
