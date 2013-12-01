@@ -25,8 +25,13 @@ Route::get('/forum/{id}', 'Fourum\Controllers\Front\ForumController@view');
 
 // thread routes
 Route::get('/thread/create/{forumId}', 'Fourum\Controllers\Front\ThreadController@getCreate');
-Route::post('/thread/create/{forumId}', 'Fourum\Controllers\Front\ThreadController@postCreate');
 Route::get('/thread/view/{id}', 'Fourum\Controllers\Front\ThreadController@view');
+Route::post('/thread/create/{forumId}', 'Fourum\Controllers\Front\ThreadController@postCreate');
+
+// post routes
+Route::get('/post/create/{threadId}', 'Fourum\Controllers\Front\PostController@getCreate');
+Route::get('/post/view/{id}', 'Fourum\Controllers\Front\PostController@view');
+Route::post('/post/create/{threadId}', 'Fourum\Controllers\Front\PostController@postCreate');
 
 /**
  * Admin Routes
