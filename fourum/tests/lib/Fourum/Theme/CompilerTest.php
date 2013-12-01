@@ -11,6 +11,8 @@ class CompilerTest extends TestCase
 
 	public function setUp()
 	{
+		parent::setUp();
+
 		$theme = m::mock('Fourum\Theme\Theme');
 		$theme->shouldReceive('getStylesheetsDir')->once()->withNoArgs()->andReturn('stylesheets');
 		$theme->shouldReceive('getColourScheme')->once()->withNoArgs()->andReturn('default');

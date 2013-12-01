@@ -9,6 +9,8 @@ class ThemeTest extends TestCase
 
     public function setUp()
     {
+        parent::setUp();
+
         $fileViewFinder = m::mock('Fourum\View\FileViewFinder');
         $fileViewFinder->shouldReceive('setPaths')->once();
 

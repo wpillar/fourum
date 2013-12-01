@@ -11,6 +11,8 @@ class FileSettingRepositoryTest extends TestCase
 
 	public function setUp()
 	{
+		parent::setUp();
+
 		$this->file = m::mock('Illuminate\Filesystem\Filesystem');
 		$this->parser = m::mock('Symfony\Component\Yaml\Parser');
 	}
