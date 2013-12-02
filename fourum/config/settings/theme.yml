@@ -1,0 +1,4 @@
+current:
+    title: "Theme"
+    description: "The current theme."
+    value: "default"

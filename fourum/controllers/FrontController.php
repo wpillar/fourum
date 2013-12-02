@@ -24,7 +24,7 @@ class FrontController extends BaseController
         $this->validators = $registry;
 
         Theme::setApplication('front');
-        Theme::setTheme('default');
+        Theme::setTheme($this->getSetting('theme.current'));
         // Theme::setColourScheme('dark');
 
         if (Config::get('app.debug')) {
