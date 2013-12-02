@@ -43,6 +43,7 @@ class ThreadController extends FrontController
 		$thread = $this->threads->get($id);
 
 		$data['thread'] = $thread;
+		$data['forum'] = $thread->getForum();
 
 		return View::make('thread.view', $data);
 	}
@@ -81,13 +82,14 @@ class ThreadController extends FrontController
 		$thread = $this->saveThread($forum);
 		$this->savePost($thread);
 
-		return Redirect::to($forum->getUrl());
+		return Redirect::to($thread->getUrl());
 	}
 
 	private function savePost(Thread $thread)
 	{
 		$post = array(
-			'content' => Input::get('content')
+			'content' => Input::get('content'),
+			'user_id' => $this->getUser()->getId()
 		);
 
 		$post = $this->posts->hydrate($post);
@@ -97,7 +99,8 @@ class ThreadController extends FrontController
 	private function saveThread(Forum $forum)
 	{
 		$thread = array(
-			'title' => Input::get('title')
+			'title' => Input::get('title'),
+			'user_id' => $this->getUser()->getId()
 		);
 
 		$thread = $this->threads->hydrate($thread);

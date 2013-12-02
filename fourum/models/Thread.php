@@ -11,15 +11,6 @@ class Thread extends \Eloquent implements ThreadInterface
 
     protected $guarded = array('id');
 
-    /**
-     * Get Posts belonging to this Thread.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function posts()
-    {
-        return $this->hasMany('Fourum\Models\Post');
-    }
 
     public function getTitle()
     {
@@ -38,10 +29,30 @@ class Thread extends \Eloquent implements ThreadInterface
 
     public function getForum()
     {
-        return $this->forum()->get();
+        return $this->forum()->first();
     }
 
-    private function forum()
+    public function getAuthor()
+    {
+        return $this->user()->get();
+    }
+
+    private function user()
+    {
+        return $this->belongsTo('Fourum\Models\User');
+    }
+
+    /**
+     * Get Posts belonging to this Thread.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function posts()
+    {
+        return $this->hasMany('Fourum\Models\Post');
+    }
+
+    public function forum()
     {
         return $this->belongsTo('Fourum\Models\Forum');
     }

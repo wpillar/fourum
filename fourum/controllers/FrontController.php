@@ -42,6 +42,10 @@ class FrontController extends BaseController
         View::composer('footer', function ($view) use ($data) {
             $view->with('user', $data['user']);
         });
+
+        View::composer('meta', function ($view) use ($data) {
+            $view->with('forumName', $data['general.name']);
+        });
     }
 
     /**

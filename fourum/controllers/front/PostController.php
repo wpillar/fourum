@@ -29,6 +29,8 @@ class PostController extends FrontController
     ) {
         parent::__construct($registry, $settings);
 
+        $this->beforeFilter('auth');
+
         $this->threads = $threadRepository;
         $this->forums = $forumRepository;
         $this->posts = $postRepository;
@@ -55,6 +57,8 @@ class PostController extends FrontController
         if (! $postValidator->validate($post)) {
             return Redirect::to("post/create/$threadId")->withErrors($postValidator)->withInput();
         }
+
+        $post['user_id'] = $this->getUser()->getId();
 
         $post = $this->posts->hydrate($post);
         $thread->posts()->save($post);

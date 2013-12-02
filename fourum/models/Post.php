@@ -25,4 +25,14 @@ class Post extends \Eloquent implements PostInterface
     {
         return $this->content;
     }
+
+    public function getAuthor()
+    {
+        return $this->user()->first();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('Fourum\Models\User');
+    }
 }

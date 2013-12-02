@@ -11,6 +11,8 @@
                 <li><a href="<?= url("user/profile/{$user->getUsername()}") ?>">Profile</a></li>
                 <li><a href="<?= url('auth/logout') ?>">Logout</a></li>
             </ul>
+            <?php else: ?>
+            <h4 style="margin-top:20px"><a href="<?= url('register') ?>">Create Account</a></h4>
             <?php endif ?>
         </div>
     </div>

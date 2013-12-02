@@ -3,9 +3,9 @@
 
 <div class="row">
     <div class="col-md-12">
-    	<h2>Login</h2>
+        <h2>Create Account</h2>
 
-    	<?= View::make('auth.login.form') ?>
+        <?= View::make('signup.form') ?>
     </div>
 </div>
 

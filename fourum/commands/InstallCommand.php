@@ -211,7 +211,7 @@ class InstallCommand extends Command {
 
 				$table->increments('id')->unsigned();
 				$table->string('title');
-				$table->integer('user_id')->unsigned()->index()->default(0);
+				$table->integer('user_id')->unsigned()->index();
 				$table->integer('forum_id')->unsigned()->index();
 				$table->integer('views')->unsigned()->default(0);
 				$table->timestamps();

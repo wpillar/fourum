@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Hash;
 
 class User extends \Eloquent implements UserInterface, IlluminateUserInterface, RemindableInterface
 {
+	protected $guarded = array('id');
+
 	/**
 	 * The database table used by the model.
 	 *
@@ -77,6 +79,11 @@ class User extends \Eloquent implements UserInterface, IlluminateUserInterface, 
 		$this->password = Hash::make($password);
 	}
 
+	public function setPasswordAttribute($password)
+	{
+		$this->attributes['password'] = Hash::make($password);
+	}
+
 	/**
 	 * @param string $username
 	 */
@@ -99,5 +106,10 @@ class User extends \Eloquent implements UserInterface, IlluminateUserInterface, 
 	public function setBirthDate($date)
 	{
 		$this->birthdate = $date;
+	}
+
+	public function getId()
+	{
+		return $this->id;
 	}
 }

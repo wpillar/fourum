@@ -20,6 +20,10 @@ Route::get('/install', 'Fourum\Controllers\Front\InstallController@index');
 // auth routes
 Route::controller('auth', 'Fourum\Controllers\Front\AuthController');
 
+// signup routes
+Route::get('/register', 'Fourum\Controllers\Front\SignupController@getRegister');
+Route::post('/register', 'Fourum\Controllers\Front\SignupController@postRegister');
+
 // forum routes
 Route::get('/forum/{id}', 'Fourum\Controllers\Front\ForumController@view');
 

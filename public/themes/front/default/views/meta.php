@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Fourum</title>
+        <title><?= $forumName ?></title>
 
         <link rel="stylesheet" href="<?= Theme::css('bootstrap.css') ?>">
         <link rel="stylesheet" href="<?= Theme::css('style.css') ?>">
