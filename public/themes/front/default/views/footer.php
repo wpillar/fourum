@@ -1,9 +1,15 @@
-	        <footer>
-	        	<hr>
-	        	<ul style="list-style:none;padding:0;margin:0;">
-	        		<li><a href="<?= url('admin') ?>">Admin</a></li>
-	        	</ul>
-	        </footer>
+            <footer>
+                <hr>
+                <ul class="small-nav">
+                    <li><a href="<?= url('admin') ?>">Admin</a></li>
+
+                    <?php if ($user): ?>
+                    <li><a href="<?= url('auth/logout') ?>">Logout</a></li>
+                    <?php else: ?>
+                    <li><a href="<?= url('auth/login') ?>">Login</a></li>
+                    <?php endif ?>
+                </ul>
+            </footer>
         </div>
     </body>
 </html>

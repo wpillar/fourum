@@ -31,6 +31,8 @@ class ThreadController extends FrontController
 	) {
 		parent::__construct($registry, $settings);
 
+		$this->beforeFilter('auth', array('except' => 'view'));
+
 		$this->threads = $threadRepository;
 		$this->forums = $forumRepository;
 		$this->posts = $postRepository;

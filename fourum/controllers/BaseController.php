@@ -1,8 +1,9 @@
 <?php namespace Fourum\Controllers;
 
-use Illuminate\Support\Facades\View;
 use Fourum\Storage\Setting\Manager;
 use Fourum\Tree\Node;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 
 /**
  * Laravel's Base Controller
@@ -45,5 +46,13 @@ class BaseController extends \Controller
 	protected function getSetting($name)
 	{
 		return $this->settings->get($name);
+	}
+
+	/**
+	 * @return \Fourum\Models\User
+	 */
+	protected function getUser()
+	{
+		return Auth::user();
 	}
 }

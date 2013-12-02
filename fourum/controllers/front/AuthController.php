@@ -54,7 +54,7 @@ class AuthController extends FrontController
         );
 
         if (Auth::attempt($credentials)) {
-            return Redirect::to('admin');
+            return Redirect::intended();
         } else {
             $json = array(
                 'authenticated' => false

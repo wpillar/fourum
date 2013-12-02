@@ -86,6 +86,14 @@ class User extends \Eloquent implements UserInterface, IlluminateUserInterface, 
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getUsername()
+	{
+		return $this->username;
+	}
+
+	/**
 	 * @param string $date
 	 */
 	public function setBirthDate($date)
