@@ -76,7 +76,7 @@ class User extends \Eloquent implements UserInterface, IlluminateUserInterface, 
 	 */
 	public function setPassword($password)
 	{
-		$this->password = Hash::make($password);
+		$this->password = $password;
 	}
 
 	public function setPasswordAttribute($password)
