@@ -28,6 +28,9 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="<?= url('/') ?>">Front</a>
+                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Will Pillar <b class="caret"></b></a>
                     <ul class="dropdown-menu">
