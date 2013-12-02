@@ -1,7 +1,8 @@
 <?php namespace Fourum\Controllers\Front;
 
-use Fourum\Storage\User\UserRepositoryInterface;
 use Fourum\Controllers\FrontController;
+use Fourum\Storage\Setting\Manager;
+use Fourum\Storage\User\UserRepositoryInterface;
 use Fourum\Validation\ValidatorRegistry;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -27,9 +28,9 @@ class AuthController extends FrontController
      *
      * @param UserRepositoryInterface $userRepository
      */
-    public function __construct(UserRepositoryInterface $userRepository, ValidatorRegistry $registry)
+    public function __construct(UserRepositoryInterface $userRepository, ValidatorRegistry $registry, Manager $settings)
     {
-        parent::__construct($registry);
+        parent::__construct($registry, $settings);
 
         $this->users = $userRepository;
     }

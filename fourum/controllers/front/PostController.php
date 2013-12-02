@@ -5,6 +5,7 @@ namespace Fourum\Controllers\Front;
 use Fourum\Controllers\FrontController;
 use Fourum\Storage\Forum\ForumRepositoryInterface;
 use Fourum\Storage\Post\PostRepositoryInterface;
+use Fourum\Storage\Setting\Manager;
 use Fourum\Storage\Thread\ThreadRepositoryInterface;
 use Fourum\Validation\ValidatorRegistry;
 use Illuminate\Support\Facades\Input;
@@ -23,9 +24,10 @@ class PostController extends FrontController
         ThreadRepositoryInterface $threadRepository,
         ForumRepositoryInterface $forumRepository,
         PostRepositoryInterface $postRepository,
-        ValidatorRegistry $registry
+        ValidatorRegistry $registry,
+        Manager $settings
     ) {
-        parent::__construct($registry);
+        parent::__construct($registry, $settings);
 
         $this->threads = $threadRepository;
         $this->forums = $forumRepository;

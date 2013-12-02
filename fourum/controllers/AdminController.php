@@ -7,15 +7,11 @@ use Illuminate\Support\Facades\View;
 
 class AdminController extends BaseController
 {
-    protected $settings;
-
     public function __construct(Manager $settings)
     {
-        parent::__construct();
+        parent::__construct($settings);
 
         $this->beforeFilter('admin.auth');
-
-        $this->settings = $settings;
 
         Theme::setApplication('admin');
         Theme::setTheme('default');
@@ -24,7 +20,7 @@ class AdminController extends BaseController
             Theme::compile();
         }
 
-        $generalName = $this->settings->get('general.name');
+        $generalName = $this->getSetting('general.name');
 
         View::composer('header', function($view) use ($generalName) {
             $view->with('forumName', $generalName);
