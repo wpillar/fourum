@@ -3,11 +3,11 @@
                 <ul class="small-nav">
                     <li><a href="<?= url('admin') ?>">Admin</a></li>
 
-                    <?php if (Auth::check()): ?>
+                    @if (Auth::check())
                     <li><a href="<?= url('auth/logout') ?>">Logout</a></li>
-                    <?php else: ?>
+                    @else
                     <li><a href="<?= url('auth/login') ?>">Login</a></li>
-                    <?php endif ?>
+                    @endif
                 </ul>
             </footer>
         </div>
