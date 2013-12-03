@@ -5,7 +5,7 @@
             <h1><a href="<?= url('/') ?>"><?= $forumName ?></a></h1>
         </div>
         <div class="col-md-2">
-            <?php if ($user): ?>
+            <?php if (Auth::check() && $user): ?>
             <h4 style="margin-top:20px;"><?= $user->getUsername() ?></h4>
             <ul class="small-nav">
                 <li><a href="<?= url("user/profile/{$user->getUsername()}") ?>">Profile</a></li>

@@ -31,21 +31,8 @@ class FrontController extends BaseController
             Theme::compile();
         }
 
-        $data['general.name'] = $this->getSetting('general.name');
-        $data['user'] = $this->getUser();
-
-        View::composer('header', function($view) use ($data) {
-            $view->with('forumName', $data['general.name']);
-            $view->with('user', $data['user']);
-        });
-
-        View::composer('footer', function ($view) use ($data) {
-            $view->with('user', $data['user']);
-        });
-
-        View::composer('meta', function ($view) use ($data) {
-            $view->with('forumName', $data['general.name']);
-        });
+        View::share('user', $this->getUser());
+        View::share('forumName', $this->getSetting('general.name'));
     }
 
     /**

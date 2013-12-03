@@ -3,7 +3,7 @@
                 <ul class="small-nav">
                     <li><a href="<?= url('admin') ?>">Admin</a></li>
 
-                    <?php if ($user): ?>
+                    <?php if (Auth::check()): ?>
                     <li><a href="<?= url('auth/logout') ?>">Logout</a></li>
                     <?php else: ?>
                     <li><a href="<?= url('auth/login') ?>">Login</a></li>
