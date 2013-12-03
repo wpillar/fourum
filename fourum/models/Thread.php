@@ -19,7 +19,12 @@ class Thread extends \Eloquent implements ThreadInterface
 
     public function getUrl()
     {
-        return url("thread/view/{$this->id}");
+        return url("thread/{$this->id}/{$this->getUrlFriendlyTitle()}");
+    }
+
+    public function getUrlFriendlyTitle()
+    {
+        return strtolower(str_replace(' ', '-', preg_replace("/[^A-Za-z0-9 ]/", '', $this->getTitle())));
     }
 
     public function getPosts()

@@ -232,6 +232,11 @@ class Theme
         return $this->getStylesheetsDir().'/css';
     }
 
+    public function getSchemesDir()
+    {
+        return $this->getLessDir() . '/schemes';
+    }
+
     /**
      * Compile any files in the theme that require it.
      *
@@ -241,6 +246,61 @@ class Theme
     {
         $compiler = new Compiler($this, $this->file, array('css/bootstrap.css'));
         $compiler->compile();
+    }
+
+    public function getThemes($application = 'front')
+    {
+        $oldApplication = $this->getApplication();
+        $this->setApplication($application);
+
+        $directories = $this->file->directories($this->getApplicationDir());
+
+        $themes = array();
+
+        foreach ($directories as $directory) {
+            $pathBits = explode('/', $directory);
+            $themes[] = end($pathBits);
+        }
+
+        $this->setApplication($oldApplication);
+
+        return $themes;
+    }
+
+    public function getSchemes($application = 'front')
+    {
+        $oldApplication = $this->getApplication();
+        $this->setApplication($application);
+
+        $files = $this->file->files($this->getSchemesDir());
+
+        $schemes = array();
+
+        foreach ($files as $file) {
+            $schemes[] = $this->getFilenameFromPath($file);
+        }
+
+        $this->setApplication($oldApplication);
+
+        return $schemes;
+    }
+
+    /**
+     * Return a file name from a path.
+     *
+     * i.e. 'path/to/a/name.less' -> 'name'
+     *
+     * @param  string $path
+     * @return string
+     */
+    private function getFilenameFromPath($path)
+    {
+        $pathBits = explode('/', $path);
+        $file = end($pathBits);
+        $fileBits = explode('.', $file);
+        $filename = $fileBits[0];
+
+        return $filename;
     }
 
     /**

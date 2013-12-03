@@ -96,6 +96,11 @@ class Forum extends \Eloquent implements ForumInterface
      */
     public function getUrl()
     {
-        return url("/forum/{$this->getId()}");
+        return url("/forum/{$this->getId()}/{$this->getUrlFriendlyTitle()}");
+    }
+
+    public function getUrlFriendlyTitle()
+    {
+        return strtolower(str_replace(' ', '-', preg_replace("/[^A-Za-z0-9 ]/", '', $this->getTitle())));
     }
 }

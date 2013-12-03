@@ -93,6 +93,7 @@ class EloquentSettingRepository implements SettingRepositoryInterface
             $setting['title'] = $dbSetting->title;
             $setting['description'] = $dbSetting->description;
             $setting['value'] = $dbSetting->value;
+            $setting['options'] = $dbSetting->options;
 
             $normalisedSettings[$setting['name']] = $setting;
         }

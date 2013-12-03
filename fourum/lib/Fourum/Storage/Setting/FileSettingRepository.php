@@ -145,6 +145,10 @@ class FileSettingRepository implements SettingRepositoryInterface
             $setting['description'] = $values['description'];
             $setting['value'] = $values['value'];
 
+            if (isset($values['options'])) {
+                $setting['options'] = $values['options'];
+            }
+
             $normalisedSettings[$name] = $setting;
         }
 

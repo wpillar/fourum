@@ -2,8 +2,10 @@ current:
     title: "Theme"
     description: "The current theme."
     value: "default"
+    options: @themes
 
 scheme:
     title: "Colour Scheme"
     description: "The colour scheme of the current theme."
     value: "default"
+    options: @schemes

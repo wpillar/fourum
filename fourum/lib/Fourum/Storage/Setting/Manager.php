@@ -1,5 +1,6 @@
 <?php namespace Fourum\Storage\Setting;
 
+use Fourum\Facades\Theme;
 use Fourum\Models\Setting;
 
 /**
@@ -56,7 +57,8 @@ class Manager
                 'name' => $name,
                 'title' => $setting['title'],
                 'value' => $value,
-                'description' => $setting['description']
+                'description' => $setting['description'],
+                'options' => $setting['options']
             );
 
             $setting = $this->db->create($data);
@@ -76,7 +78,39 @@ class Manager
         $dbSettings = $this->db->getByNamespace($namespace);
         $fileSettings = $this->file->getByNamespace($namespace);
 
-        return array_merge($fileSettings, $dbSettings);
+        $settings = array_merge($fileSettings, $dbSettings);
+        $settings = $this->loadOptions($settings);
+
+        return $settings;
+    }
+
+    protected function loadOptions(array $settings)
+    {
+        foreach ($settings as &$setting) {
+            if (isset($setting['options'])) {
+                $option = $setting['options'];
+
+                switch ($option) {
+                    case '@themes':
+                        $setting['options'] = Theme::getThemes('front');
+                        break;
+
+                    case '@schemes':
+                        $setting['options'] = Theme::getSchemes('front');
+                        break;
+
+                    case '@admin.themes':
+                        $setting['options'] = Theme::getThemes('admin');
+                        break;
+
+                    case '@admin.schemes':
+                        $setting['options'] = Theme::getSchemes('admin');
+                        break;
+                }
+            }
+        }
+
+        return $settings;
     }
 
     /**

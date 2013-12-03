@@ -25,16 +25,16 @@ Route::get('/register', 'Fourum\Controllers\Front\SignupController@getRegister')
 Route::post('/register', 'Fourum\Controllers\Front\SignupController@postRegister');
 
 // forum routes
-Route::get('/forum/{id}', 'Fourum\Controllers\Front\ForumController@view');
+Route::get('/forum/{id}/{title?}', 'Fourum\Controllers\Front\ForumController@view');
 
 // thread routes
 Route::get('/thread/create/{forumId}', 'Fourum\Controllers\Front\ThreadController@getCreate');
-Route::get('/thread/view/{id}', 'Fourum\Controllers\Front\ThreadController@view');
+Route::get('/thread/{id}/{title?}', 'Fourum\Controllers\Front\ThreadController@view');
 Route::post('/thread/create/{forumId}', 'Fourum\Controllers\Front\ThreadController@postCreate');
 
 // post routes
 Route::get('/post/create/{threadId}', 'Fourum\Controllers\Front\PostController@getCreate');
-Route::get('/post/view/{id}', 'Fourum\Controllers\Front\PostController@view');
+Route::get('/post/{id}', 'Fourum\Controllers\Front\PostController@view');
 Route::post('/post/create/{threadId}', 'Fourum\Controllers\Front\PostController@postCreate');
 
 /**
@@ -49,6 +49,7 @@ Route::group(array('prefix' => 'admin'), function()
      */
     Route::get('/settings', 'Fourum\Controllers\Admin\SettingsController@index');
     Route::get('/settings/banning', 'Fourum\Controllers\Admin\SettingsController@banning');
+    Route::get('/settings/themes', 'Fourum\Controllers\Admin\SettingsController@themes');
     Route::post('/settings', 'Fourum\Controllers\Admin\SettingsController@save');
 
     /**

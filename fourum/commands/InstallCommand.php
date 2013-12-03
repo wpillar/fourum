@@ -248,6 +248,7 @@ class InstallCommand extends Command {
 				$table->string('title');
 				$table->string('value');
 				$table->string('description');
+				$table->string('options')->nullable();
 				$table->timestamps();
 				$table->softDeletes();
 				$table->unique(array('namespace', 'name'));
