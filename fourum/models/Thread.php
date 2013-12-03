@@ -11,6 +11,10 @@ class Thread extends \Eloquent implements ThreadInterface
 
     protected $guarded = array('id');
 
+    public function getId()
+    {
+        return $this->id;
+    }
 
     public function getTitle()
     {
@@ -29,7 +33,7 @@ class Thread extends \Eloquent implements ThreadInterface
 
     public function getPosts()
     {
-        return $this->posts()->get();
+        return Post::where('thread_id', '=', $this->getId())->paginate(10);
     }
 
     public function getForum()

@@ -17,15 +17,17 @@
 	<div class="col-md-12">
 		@foreach($thread->getPosts() as $post)
 		<div class="row post">
-			<div class="col-md-2">
+			<div class="col-md-1">
 				{{ Gravatar::image($post->getAuthor()->getEmail(), '', array('width' => 50, 'height' => 50)) }}
 				<h4>{{ $post->getAuthor()->getUsername() }}</h4>
 			</div>
-			<div class="col-md-10">
+			<div class="col-md-11">
 			{{ $post->getContent() }}
 			</div>
 		</div>
 		@endforeach
+
+		{{ $thread->getPosts()->links() }}
 	</div>
 </div>
 
