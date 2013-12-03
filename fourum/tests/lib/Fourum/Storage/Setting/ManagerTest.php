@@ -135,7 +135,8 @@ class ManagerTest extends TestCase
 			->andReturn(array(
 				'value' => 'foo',
 				'title' => 'Forum Name',
-				'description' => 'Name of forum'
+				'description' => 'Name of forum',
+				'options' => null
 			));
 
 		$manager = new Manager($this->db, $this->file);
