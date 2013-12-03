@@ -7,7 +7,8 @@
 		"baum/baum": "~1.0",
 		"leafo/lessphp": "0.4.*",
 		"symfony/yaml": "2.3.*",
-		"respect/validation": "dev-develop"
+		"respect/validation": "dev-develop",
+		"thomaswelton/laravel-gravatar": "dev-master"
 	},
 	"require-dev": {
         "phpunit/phpunit": "3.7.*",
