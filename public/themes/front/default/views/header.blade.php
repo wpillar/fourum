@@ -1,8 +1,13 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-9">
             <h1><a href="{{ url('/') }}">{{ $forumName }}</a></h1>
+        </div>
+        <div class="col-md-1">
+            @if (Auth::check() && $user)
+            {{ Gravatar::image($user->getEmail(), '', array('width' => 60, 'height' => 60, 'style' => 'margin-top:9px')) }}
+            @endif
         </div>
         <div class="col-md-2">
             @if (Auth::check() && $user)

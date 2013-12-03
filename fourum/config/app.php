@@ -114,6 +114,7 @@ return array(
 		// 'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Baum\BaumServiceProvider',
+		'Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider',
 		'Fourum\Storage\StorageServiceProvider',
 		'Fourum\Theme\ThemeServiceProvider',
 		'Fourum\View\ViewServiceProvider',
@@ -183,7 +184,8 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-		'Theme'			  => 'Fourum\Facades\Theme'
+		'Theme'			  => 'Fourum\Facades\Theme',
+		'Gravatar'		  => 'Thomaswelton\LaravelGravatar\Facades\Gravatar'
 	),
 
 );

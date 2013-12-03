@@ -112,4 +112,9 @@ class User extends \Eloquent implements UserInterface, IlluminateUserInterface, 
 	{
 		return $this->id;
 	}
+
+	public function getEmail()
+	{
+		return $this->email;
+	}
 }

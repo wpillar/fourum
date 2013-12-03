@@ -18,6 +18,7 @@
 		@foreach($thread->getPosts() as $post)
 		<div class="row post">
 			<div class="col-md-2">
+				{{ Gravatar::image($post->getAuthor()->getEmail(), '', array('width' => 50, 'height' => 50)) }}
 				<h4>{{ $post->getAuthor()->getUsername() }}</h4>
 			</div>
 			<div class="col-md-10">
