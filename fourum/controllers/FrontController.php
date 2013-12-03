@@ -25,7 +25,7 @@ class FrontController extends BaseController
 
         Theme::setApplication('front');
         Theme::setTheme($this->getSetting('theme.current'));
-        // Theme::setColourScheme('dark');
+        Theme::setColourScheme($this->getSetting('theme.scheme'));
 
         if (Config::get('app.debug')) {
             Theme::compile();
