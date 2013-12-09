@@ -5,7 +5,7 @@ use Fourum\Models\Group;
 /**
  * Eloquent Repository for Groups
  */
-class EloquentGroupRepository implements GroupInterface
+class EloquentGroupRepository implements GroupRepositoryInterface
 {
     /**
      * Get all Groups
