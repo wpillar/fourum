@@ -117,4 +117,9 @@ class User extends \Eloquent implements UserInterface, IlluminateUserInterface, 
 	{
 		return $this->email;
 	}
+
+	public function getGroups()
+	{
+		return $this->groups();
+	}
 }

@@ -38,4 +38,9 @@ class EloquentGroupRepository implements GroupRepositoryInterface
     {
         return Group::create($input);
     }
+
+    public function getByName($name)
+    {
+        return Group::where('name', '=', $name)->first();
+    }
 }

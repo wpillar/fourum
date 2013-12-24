@@ -10,5 +10,7 @@ interface UserInterface
      *
      * @return Fourum\Models\Group
      */
-    public function groups();
+    public function getGroups();
+
+    public function getId();
 }

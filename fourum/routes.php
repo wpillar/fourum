@@ -68,6 +68,8 @@ Route::group(array('prefix' => 'admin'), function()
      * Groups Routes
      */
     Route::get('/groups', 'Fourum\Controllers\Admin\GroupsController@index');
+    Route::get('/groups/add', 'Fourum\Controllers\Admin\GroupsController@add');
+    Route::post('/groups/add', 'Fourum\Controllers\Admin\GroupsController@save');
 
     /**
      * Themes Routes

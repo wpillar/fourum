@@ -9,5 +9,7 @@ interface GroupInterface
      * Get the Users in the Group
      * @return array
      */
-    public function users();
+    public function getUsers();
+
+    public function getId();
 }

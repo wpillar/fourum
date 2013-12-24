@@ -8,6 +8,7 @@ use Fourum\Models\Forum;
 use Fourum\Models\Forum\Type;
 use Fourum\Models\Setting;
 use Fourum\Models\User;
+use Fourum\Models\Group;
 use Fourum\Tree\Node;
 
 /**
@@ -31,14 +32,18 @@ class InstallCommand extends Command {
 	 */
 	protected $description = 'Install Fourum';
 
+	private $repos;
+
 	/**
 	 * Create a new command instance.
 	 *
 	 * @return void
 	 */
-	public function __construct()
+	public function __construct(RepositoryRegistry $repos)
 	{
 		parent::__construct();
+
+		$this->repos = $repos;
 	}
 
 	/**
@@ -65,6 +70,7 @@ class InstallCommand extends Command {
 	private function bootstrap()
 	{
 		$this->bootstrapForums();
+		$this->bootstrapGroups();
 		$this->bootstrapUsers();
 	}
 
@@ -76,6 +82,12 @@ class InstallCommand extends Command {
 		$user->setUsername('wpillar');
 		$user->setBirthDate('1989-09-19');
 		$user->save();
+
+		$groupsRepo = new \Fourum\Storage\Group\EloquentGroupRepository();
+		$group = $groupsRepo->getByName('Administrators');
+
+		$userGroupsRepo = new \Fourum\Storage\UserGroup\EloquentUserGroupRepository();
+		$userGroupsRepo->assign($user, $group);
 	}
 
 	private function bootstrapForums()
@@ -105,6 +117,13 @@ class InstallCommand extends Command {
 
 		$forumNode = Node::create(array('forum_id' => $forum->id));
 		$forumNode->makeChildOf($categoryNode);
+	}
+
+	private function bootstrapGroups()
+	{
+		$group = new Group();
+		$group->name = "Administrators";
+		$group->save();
 	}
 
 	/**

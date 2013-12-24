@@ -23,4 +23,6 @@ interface GroupRepositoryInterface
      * @param  array  $input
      */
     public function create(array $input);
+
+    public function getByName($name);
 }
