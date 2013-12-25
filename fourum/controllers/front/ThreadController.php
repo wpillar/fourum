@@ -88,7 +88,7 @@ class ThreadController extends FrontController
 	private function savePost(Thread $thread)
 	{
 		$post = array(
-			'content' => Input::get('content'),
+			'content' => nl2br(Input::get('content')),
 			'user_id' => $this->getUser()->getId()
 		);
 
