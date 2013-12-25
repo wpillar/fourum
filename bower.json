@@ -1,0 +1,21 @@
+{
+  "name": "fourum",
+  "version": "0.0.0",
+  "homepage": "https://github.com/fourum/fourum",
+  "authors": [
+    "Will Pillar <will.pillar@graze.com>"
+  ],
+  "description": "Forum software, built responsibly.",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "sir-trevor-js": "0.3.0"
+  }
+}
