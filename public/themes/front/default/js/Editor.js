@@ -8,7 +8,7 @@ var Editor = (function () {
 
         this.element = element;
         this.options = $.extend(this.options, options);
-        this.editor = null;
+        this.editableElement = null;
         this.form = null;
         this.hiddenInput = null;
 
@@ -20,17 +20,17 @@ var Editor = (function () {
     };
 
     Editor.prototype.initialise = function() {
-        this.editor = document.createElement(this.options.editableElement);
-        this.editor = $(this.editor);
+        this.editableElement = document.createElement(this.options.editableElement);
+        this.editableElement = $(this.editableElement);
 
-        this.editor.attr('contenteditable', 'true');
-        this.editor.addClass(this.options.editorClass);
+        this.editableElement.attr('contenteditable', 'true');
+        this.editableElement.addClass(this.options.editorClass);
 
-        this.element.replaceWith(this.editor);
+        this.element.replaceWith(this.editableElement);
 
-        this.editor.focus();
+        this.editableElement.focus();
 
-        this.form = this.editor.closest('form');
+        this.form = this.editableElement.closest('form');
         this.hiddenInput = $('<input>').attr({
             type: 'hidden',
             name: this.options.inputName,
@@ -43,10 +43,10 @@ var Editor = (function () {
     };
 
     Editor.prototype.registerListeners = function () {
-        this.editor.keydown($.proxy(function() {
-            if (this.editor.html() == this.options.placeholder) {
-                this.editor.html(null);
-                this.editor.css('color', '#000');
+        this.editableElement.keydown($.proxy(function() {
+            if (this.editableElement.html() == this.options.placeholder) {
+                this.editableElement.html(null);
+                this.editableElement.css('color', '#000');
             }
         }, this));
 
@@ -56,12 +56,12 @@ var Editor = (function () {
     };
 
     Editor.prototype.setPlaceholder = function(placeholder) {
-        this.editor.html(placeholder);
-        this.editor.css('color', '#888');
+        this.editableElement.html(placeholder);
+        this.editableElement.css('color', '#888');
     };
 
     Editor.prototype.getValue = function() {
-        return this.editor.html();
+        return this.editableElement.html();
     }
 
     return Editor;
