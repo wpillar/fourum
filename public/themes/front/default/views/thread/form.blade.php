@@ -30,12 +30,12 @@
 
 <script>
 var contentEditor = new Editor($('#content-container'), {
-    placeholder: "Content",
+    placeholder: "Enter your content...",
     inputName: 'content'
 });
 
 var titleEditor = new Editor($('#title-container'), {
-    placeholder: 'Title',
+    placeholder: 'Enter your title...',
     inputName: 'title',
     editableElement: 'h3'
 });

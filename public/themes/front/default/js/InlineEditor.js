@@ -20,10 +20,11 @@ var InlineEditor = (function() {
         var content = this.contentElement.html();
 
         this.editor = new Editor(this.contentElement, {
-            placeholder: content,
             inputName: this.options.inputName,
             editableElement: 'p'
         });
+
+        this.editor.setValue(content);
 
         this.controls = $(this.postElement.find('.post-controls'));
 

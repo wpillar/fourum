@@ -6,7 +6,7 @@
 		<h3>{{{ $forum->title }}}</h3>
 	</div>
 	<div class="col-md-6">
-		<p style="float:right;">
+		<p style="float:right;margin-top:12px;">
 			<a href="{{ url('/thread/create/' . $forum->id) }}" class="btn btn-default btn-primary">New Thread</a>
 		</p>
 	</div>

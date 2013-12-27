@@ -4,7 +4,7 @@ var Editor = (function () {
         this.options = {
             editorClass: 'editable',
             editableElement: 'div',
-            placeholder: 'Content',
+            placeholder: null,
             inputName: null
         };
 

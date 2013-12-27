@@ -7,7 +7,7 @@
 		<p>in <a href="{{ $forum->getUrl() }}">{{ $forum->getTitle() }}</a></p>
 	</div>
 	<div class="col-md-6">
-		<p style="float:right;">
+		<p style="float:right;margin-top:12px;">
 			<a href="{{ url('/post/create/' . $thread->id) }}" class="btn btn-default btn-primary">New Post</a>
 		</p>
 	</div>
