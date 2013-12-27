@@ -2,13 +2,14 @@
 
 use Fourum\Storage\Setting\Manager;
 use Fourum\Tree\Node;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
 /**
  * Laravel's Base Controller
  */
-class BaseController extends \Controller
+class BaseController extends Controller
 {
 	/**
 	 * @var Fourum\Tree\Node

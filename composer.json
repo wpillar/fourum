@@ -3,8 +3,8 @@
 	"description": "Forum software, built responsibly.",
 	"keywords": ["forum", "fourum"],
 	"require": {
-		"laravel/framework": "4.0.*",
-		"baum/baum": "~1.0",
+		"laravel/framework": "4.1.*",
+		"baum/baum": "dev-develop",
 		"leafo/lessphp": "0.4.*",
 		"symfony/yaml": "2.3.*",
 		"respect/validation": "dev-develop",
