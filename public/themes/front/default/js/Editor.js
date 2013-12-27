@@ -3,10 +3,13 @@ var Editor = (function () {
     function Editor(element, options) {
         this.options = {
             editorClass: 'editable',
-            editableElement: 'div'
+            editableElement: 'div',
+            placeholder: 'Content',
+            inputName: null
         };
 
         this.element = element;
+        this.oldElement = null;
         this.options = $.extend(this.options, options);
         this.editableElement = null;
         this.form = null;
@@ -20,6 +23,8 @@ var Editor = (function () {
     };
 
     Editor.prototype.initialise = function() {
+        this.oldElement = this.element.clone();
+
         this.editableElement = document.createElement(this.options.editableElement);
         this.editableElement = $(this.editableElement);
 
@@ -62,7 +67,20 @@ var Editor = (function () {
 
     Editor.prototype.getValue = function() {
         return this.editableElement.html();
-    }
+    };
+
+    Editor.prototype.setValue = function(value) {
+        this.editableElement.html(value);
+    };
+
+    Editor.prototype.persistValue = function(value) {
+        this.setValue(value);
+        this.oldElement.html(value);
+    };
+
+    Editor.prototype.close = function () {
+        this.editableElement.replaceWith(this.oldElement);
+    };
 
     return Editor;
 

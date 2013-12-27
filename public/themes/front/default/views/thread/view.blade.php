@@ -16,13 +16,31 @@
 <div class="row">
 	<div class="col-md-12">
 		@foreach($thread->getPosts() as $post)
-		<div class="row post">
+		<div class="row post" id="{{ $post->getId() }}">
 			<div class="col-md-1">
 				{{ Gravatar::image($post->getAuthor()->getEmail(), '', array('width' => 50, 'height' => 50)) }}
 				<h4>{{ $post->getAuthor()->getUsername() }}</h4>
 			</div>
 			<div class="col-md-11">
-			{{ $post->getContent() }}
+				<div class="row post-content-container">
+					<div class="col-md-12">
+						<p class="post-content">{{ $post->getContent() }}</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4 post-meta">
+					<?php if ($post->isEdited()): ?>
+						<small>edited at <?= $post->getUpdatedAt() ?></small>
+					<?php endif ?>
+					</div>
+					<div class="col-md-8">
+					<?php if (Auth::check() && $post->isAuthor(Auth::user())): ?>
+						<div class="btn-group btn-group-sm post-controls">
+							<a href="javascript:;" data-inline-edit="{{ $post->getId() }}" class="btn btn-default">Edit</a>
+						</div>
+					<?php endif ?>
+					</div>
+				</div>
 			</div>
 		</div>
 		@endforeach

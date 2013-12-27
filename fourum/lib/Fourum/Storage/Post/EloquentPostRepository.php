@@ -43,4 +43,9 @@ class EloquentPostRepository implements PostRepositoryInterface
     {
         return new Post($input);
     }
+
+    public function save(PostInterface $post)
+    {
+        $post->save();
+    }
 }

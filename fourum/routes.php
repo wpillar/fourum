@@ -36,6 +36,7 @@ Route::post('/thread/create/{forumId}', 'Fourum\Controllers\Front\ThreadControll
 Route::get('/post/create/{threadId}', 'Fourum\Controllers\Front\PostController@getCreate');
 Route::get('/post/{id}', 'Fourum\Controllers\Front\PostController@view');
 Route::post('/post/create/{threadId}', 'Fourum\Controllers\Front\PostController@postCreate');
+Route::post('/post/edit', 'Fourum\Controllers\Front\PostController@postEdit');
 
 /**
  * Admin Routes

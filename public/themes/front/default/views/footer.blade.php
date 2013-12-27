@@ -11,5 +11,6 @@
                 </ul>
             </footer>
         </div>
+        <script type="text/javascript" src="{{ Theme::js('InlineEditor.js') }}"></script>
     </body>
 </html>
