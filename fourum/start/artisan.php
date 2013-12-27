@@ -1,5 +1,7 @@
 <?php
 
+use Fourum\Storage\RepositoryRegistry;
+
 /*
 |--------------------------------------------------------------------------
 | Register The Artisan Commands
@@ -10,5 +12,14 @@
 | the console gets access to each of the command object instances.
 |
 */
-Artisan::add(new Fourum\Commands\InstallCommand);
+
+$registry = new RepositoryRegistry(array(
+    App::make('Fourum\Storage\User\UserRepositoryInterface'),
+    App::make('Fourum\Storage\Forum\ForumRepositoryInterface'),
+    App::make('Fourum\Storage\Group\GroupRepositoryInterface'),
+    App::make('Fourum\Storage\Post\PostRepositoryInterface'),
+    App::make('Fourum\Storage\Thread\ThreadRepositoryInterface')
+));
+
+Artisan::add(new Fourum\Commands\InstallCommand($registry));
 Artisan::add(new Fourum\Commands\ThemeCompileCommand);

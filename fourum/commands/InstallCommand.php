@@ -9,6 +9,7 @@ use Fourum\Models\Forum\Type;
 use Fourum\Models\Setting;
 use Fourum\Models\User;
 use Fourum\Models\Group;
+use Fourum\Storage\RepositoryRegistry;
 use Fourum\Tree\Node;
 
 /**
